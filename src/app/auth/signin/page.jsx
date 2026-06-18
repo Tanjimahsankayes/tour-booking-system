@@ -164,7 +164,7 @@ const SignInPage = () => {
                   className={`w-full text-black px-4 py-3 border ${
                     errors.password ? "border-red-500" : "border-gray-300"
                   } rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition`}
-                  placeholder="••••••••"
+                  placeholder="Your Password"
                 />
                 {errors.password && (
                   <p className="mt-1 text-sm text-red-600">{errors.password}</p>

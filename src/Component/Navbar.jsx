@@ -2,9 +2,16 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useSession } from "@/lib/auth-client";
+// import { signOut } from "better-auth/api";
+import { signOut } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {data, isPending} = useSession();
+  
+  console.log(data);
+  const user = data?.user;
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -53,18 +60,32 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              href="/auth/signin"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
-            >
-              Login
-            </Link>
-            <Link
-              href="/auth/signup"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
-            >
-              Register
-            </Link>
+            {user ? (
+              <>
+
+                <button
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/auth/signin"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/auth/signup"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -131,19 +152,37 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-              <div className="flex flex-col space-y-2 pt-2 border-t border-gray-200">
-                <Link
-                  href="/login"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/register"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
-                >
-                  Register
-                </Link>
+              <div>
+                {user ? (
+                  <>
+                    <p>Welcome, {user.name}! </p>
+                    <button
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
+                      onClick={() => signOut()}
+                    >
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <div className="hidden md:flex items-center space-x-4 flex-col space-y-2 pt-2 border-t border-gray-200">
+                      <Link
+                        href="/auth/signin"
+                        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        href="/auth/signup"
+                        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
+                      >
+                        Register
+                      </Link>
+
+                      <div></div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
