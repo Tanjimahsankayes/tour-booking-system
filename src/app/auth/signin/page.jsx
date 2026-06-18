@@ -57,6 +57,17 @@ const SignInPage = () => {
     }
   };
 
+  const handleGoogleSignUp = async () => {
+      try {
+        await authClient.signIn.social({
+          provider: "google",
+          callbackURL: "/",
+        });
+      } catch (error) {
+        toast.error("Google signup failed");
+      }
+    };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full flex bg-white rounded-3xl shadow-2xl overflow-hidden">
@@ -218,21 +229,16 @@ const SignInPage = () => {
               </div>
 
               {/* Social Login Buttons */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="w-full flex justify-center" >
                 <button
+                  onClick={handleGoogleSignUp}
                   type="button"
                   className="flex gap-1 items-center text-black justify-center px-4 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition"
                 >
                   <FcGoogle size={30} />
                   Google
                 </button>
-                <button
-                  type="button"
-                  className="flex gap-1 text-black items-center justify-center px-4 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition"
-                >
-                  <FaFacebook size={30} className="bg-blue-300 rounded-full" />
-                  Facebook
-                </button>
+
               </div>
 
               {/* Sign Up Link */}
