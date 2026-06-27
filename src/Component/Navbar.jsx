@@ -3,21 +3,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useSession } from "@/lib/auth-client";
-// import { signOut } from "better-auth/api";
 import { signOut } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {data, isPending} = useSession();
-  
-  console.log(data);
+  const {data} = useSession();
   const user = data?.user;
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="relative flex justify-between items-center py-4">
-          {/* Logo / Website Name */}
           <Link
             href="/"
             className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition"
@@ -25,7 +21,6 @@ const Navbar = () => {
             Tutor Booking
           </Link>
 
-          {/* Desktop Navigation (centered) */}
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <Link
               href="/"
@@ -44,6 +39,13 @@ const Navbar = () => {
               className="text-gray-700 hover:text-blue-600 transition font-medium"
             >
               Services
+            </Link>
+            <Link
+              href="/add-tutors"
+              className="text-gray-700 hover:text-blue-600 transition font-medium"
+            >
+              
+              Add Tutors
             </Link>
             <Link
               href="/about"

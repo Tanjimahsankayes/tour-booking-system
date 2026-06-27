@@ -42,8 +42,6 @@ const SignInPage = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      // Add your signin logic here
 
       const {data, error} = await authClient.signIn.email({
         email : formData.email,
@@ -51,9 +49,6 @@ const SignInPage = () => {
         rememberMe : true,
         callbackURL : '/'
       });
-      console.log("data:", data);
-      console.log("error:", error);
-      
     }
   };
 
@@ -69,10 +64,10 @@ const SignInPage = () => {
     };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-purple-600 via-purple-700 to-indigo-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full flex bg-white rounded-3xl shadow-2xl overflow-hidden">
         {/* Left Side - Image/Branding */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-600 to-indigo-700 p-12 flex-col justify-center items-center text-white">
+        <div className="hidden lg:flex lg:w-1/2 bg-linear-to-br from-purple-600 to-indigo-700 p-12 flex-col justify-center items-center text-white">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
             <p className="text-lg mb-8 opacity-90">
@@ -211,7 +206,7 @@ const SignInPage = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition transform hover:scale-[1.02] shadow-lg"
+                className="w-full bg-linear-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition transform hover:scale-[1.02] shadow-lg"
               >
                 Sign In
               </button>
@@ -229,7 +224,7 @@ const SignInPage = () => {
               </div>
 
               {/* Social Login Buttons */}
-              <div className="w-full flex justify-center" >
+              <div className="w-full flex justify-center">
                 <button
                   onClick={handleGoogleSignUp}
                   type="button"
@@ -238,7 +233,6 @@ const SignInPage = () => {
                   <FcGoogle size={30} />
                   Google
                 </button>
-
               </div>
 
               {/* Sign Up Link */}
