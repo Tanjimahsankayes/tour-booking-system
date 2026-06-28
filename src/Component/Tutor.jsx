@@ -56,11 +56,11 @@ const TutorPage = ({ tutor }) => {
     <Link href={`/tutors/${_id}`} className="block">
       <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 sm:p-5">
+        <div className="bg-linear-to-r from-blue-600 to-indigo-600 p-4 sm:p-5">
           <div className="flex items-center gap-4">
             {/* Profile Image */}
             <div className="shrink-0">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg overflow-hidden">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-linear-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg overflow-hidden">
                 {profilePhoto ? (
                   <Image
                     src={profilePhoto}
@@ -116,7 +116,7 @@ const TutorPage = ({ tutor }) => {
           </div>
 
           {/* View Profile Button */}
-          <button className="w-full mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 text-sm flex items-center justify-center">
+          <button className="w-full mt-4 bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 text-sm flex items-center justify-center">
             View Full Profile
           </button>
         </div>

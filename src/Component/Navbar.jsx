@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useSession } from "@/lib/auth-client";
 import { signOut } from "@/lib/auth-client";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,37 +35,51 @@ const Navbar = () => {
             >
               Tutors
             </Link>
-            <Link
-              href="/services"
-              className="text-gray-700 hover:text-blue-600 transition font-medium"
-            >
-              Services
-            </Link>
-            <Link
-              href="/add-tutors"
-              className="text-gray-700 hover:text-blue-600 transition font-medium"
-            >
-              
-              Add Tutors
-            </Link>
-            <Link
-              href="/about"
-              className="text-gray-700 hover:text-blue-600 transition font-medium"
-            >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="text-gray-700 hover:text-blue-600 transition font-medium"
-            >
-              Contact
-            </Link>
+
+            <div className="hidden md:flex items-center space-x-8">
+              {user ? (
+                <>
+                  <Link
+                    href="/add-tutors"
+                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                  >
+                    Add Tutors
+                  </Link>
+
+                  <Link href="/my-tutors">My Tutors</Link>
+
+                  <Link href="/my-booked-sessions">My Booked Sessions</Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/services"
+                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                  >
+                    Services
+                  </Link>
+
+                  <Link
+                    href="/about"
+                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                  >
+                    About
+                  </Link>
+
+                  <Link
+                    href="/contact"
+                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                  >
+                    Contact
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <>
-
                 <button
                   className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
                   onClick={() => signOut()}
@@ -158,11 +173,19 @@ const Navbar = () => {
                 {user ? (
                   <>
                     <p>Welcome, {user.name}! </p>
+                    <div>
+
+                      <Image
+                        src={user.image}
+                        alt={user.name}
+                        className="w-10 h-10 rounded-full cursor-pointer"
+                      />
+                    </div>
                     <button
                       className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
                       onClick={() => signOut()}
                     >
-                      Sign Out
+                      Log Out
                     </button>
                   </>
                 ) : (

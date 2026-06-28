@@ -48,9 +48,9 @@ const TutorsClient = ({ tutors }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
