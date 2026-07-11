@@ -15,7 +15,6 @@ const SignUp = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "student",
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +44,12 @@ const SignUp = () => {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
+    } else if (!/[A-Z]/.test(formData.password)) {
+      newErrors.password =
+        "Password must contain at least one uppercase letter";
+    } else if (!/[a-z]/.test(formData.password)) {
+      newErrors.password =
+        "Password must contain at least one lowercase letter";
     }
 
     if (formData.password !== formData.confirmPassword) {
@@ -83,6 +88,7 @@ const SignUp = () => {
         callbackURL: "/",
       });
     } catch (error) {
+      console.error(error);
       toast.error("Google signup failed");
     }
   };
@@ -90,7 +96,7 @@ const SignUp = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
       <div className="w-full max-w-5xl flex bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
-        {/* Left Side - Branding */}
+
         <div className="hidden lg:flex lg:w-1/2 bg-linear-to-br from-indigo-600 to-purple-700 p-12 flex-col justify-center">
           <div className="text-white">
             <h1 className="text-4xl font-bold mb-4">

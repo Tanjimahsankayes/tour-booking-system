@@ -4,6 +4,11 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import TutorsClient from "./TutorsClient";
 
+export const metadata = {
+  title: "TutorHive | Tutors",
+  description: "Browse our expert tutors and find the perfect match for your learning needs.",
+};
+
 const TutorsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),

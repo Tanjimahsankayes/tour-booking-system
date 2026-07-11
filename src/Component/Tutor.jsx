@@ -106,18 +106,22 @@ const TutorPage = ({ tutor }) => {
           {/* Institution */}
           <div className="flex items-center text-gray-600 text-sm">
             <Building2 className="w-4 h-4 mr-2 text-blue-500" />
-            <span className="truncate">{institution || "Institution not specified"}</span>
+            <span className="truncate">
+              {institution || "Institution not specified"}
+            </span>
           </div>
 
           {/* Location */}
           <div className="flex items-center text-gray-600 text-sm">
             <MapPin className="w-4 h-4 mr-2 text-blue-500" />
-            <span className="truncate">{location || "Location not specified"}</span>
+            <span className="truncate">
+              {location || "Location not specified"}
+            </span>
           </div>
 
           {/* View Profile Button */}
           <button className="w-full mt-4 bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 text-sm flex items-center justify-center">
-            View Full Profile
+            Book Session
           </button>
         </div>
       </div>

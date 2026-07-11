@@ -1,7 +1,25 @@
 import TutorDetails from "@/Component/TutorDetails";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+
+export const metadata = {
+  title: "TutorHive | Tutor Details",
+  description: "View detailed information about our expert tutors and book your sessions.",
+};
 
 const TutorDetailsPage = async ({ params }) => {
   const { id } = await params;
+
+  // Private route protection
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const user = session?.user;
+  if (!user) {
+    redirect("/auth/signin");
+  }
 
   const res = await fetch(`http://localhost:5000/tutor/${id}`, {
     cache: "no-store",
@@ -20,7 +38,7 @@ const TutorDetailsPage = async ({ params }) => {
 
   const tutor = await res.json();
 
-  return <TutorDetails tutor={tutor} />;
+  return <TutorDetails tutor={tutor} user={user} />;
 };
 
 export default TutorDetailsPage;

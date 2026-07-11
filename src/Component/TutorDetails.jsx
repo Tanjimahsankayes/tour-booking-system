@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   BookOpen,
   Clock,
@@ -13,10 +13,15 @@ import {
   CheckCircle,
   Star,
   User,
+  X,
+  AlertCircle,
 } from "lucide-react";
 import Image from "next/image";
+import BookingModal from "./BookingModal";
 
-const TutorDetails = ({ tutor }) => {
+const TutorDetails = ({ tutor, user }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const {
     name,
     subject,
@@ -30,7 +35,38 @@ const TutorDetails = ({ tutor }) => {
     experience,
     institution,
     sessionStartDate,
+    _id,
   } = tutor;
+
+  // Check booking restrictions
+  const checkBookingRestrictions = () => {
+    // Check slot availability
+    if (!totalSlots || totalSlots <= 0) {
+      return {
+        canBook: false,
+        message: "No available slots left.",
+      };
+    }
+
+    // Check session date restriction
+    if (sessionStartDate) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const sessionDate = new Date(sessionStartDate);
+      sessionDate.setHours(0, 0, 0, 0);
+
+      if (today < sessionDate) {
+        return {
+          canBook: false,
+          message: "Booking is not available yet for this tutor.",
+        };
+      }
+    }
+
+    return { canBook: true, message: "" };
+  };
+
+  const bookingRestriction = checkBookingRestrictions();
 
   const getTeachingModeBadge = () => {
     switch (teachingMode) {
@@ -191,15 +227,40 @@ const TutorDetails = ({ tutor }) => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center">
+              <button
+                onClick={() => bookingRestriction.canBook && setIsModalOpen(true)}
+                disabled={!bookingRestriction.canBook}
+                className={`flex-1 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center ${
+                  bookingRestriction.canBook
+                    ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                }`}
+              >
                 <Calendar className="w-5 h-5 mr-2" />
-                Book a Session
+                {bookingRestriction.canBook ? "Book a Session" : "Booking Unavailable"}
               </button>
               <button className="flex-1 bg-white border-2 border-blue-600 text-blue-600 font-semibold py-4 px-6 rounded-xl hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center">
                 <Star className="w-5 h-5 mr-2" />
                 Contact Tutor
               </button>
             </div>
+
+            {/* Booking Restriction Message */}
+            {!bookingRestriction.canBook && (
+              <div className="mt-4 bg-red-50 border border-red-200 rounded-xl p-4 flex items-start">
+                <AlertCircle className="w-5 h-5 text-red-500 mr-3 mt-0.5" />
+                <div>
+                  <p className="text-red-800 font-medium text-sm">
+                    {bookingRestriction.message}
+                  </p>
+                  {totalSlots === 0 && (
+                    <p className="text-red-600 text-xs mt-1">
+                      This session is fully booked. You can't join at the moment.
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -222,6 +283,14 @@ const TutorDetails = ({ tutor }) => {
           </div>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        tutor={tutor}
+        user={user}
+      />
     </div>
   );
 };
