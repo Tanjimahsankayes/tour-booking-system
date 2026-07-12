@@ -26,8 +26,17 @@ const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
 
     setIsCancelling(true);
     try {
+
+      const {token} = await auth.api.getToken({
+          headers: await headers(),
+        });
+
       const response = await fetch(
-        `http://localhost:5000/booking/${selectedBooking._id}`,
+        `http://localhost:5000/booking/${selectedBooking._id}`, {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        },
         {
           method: "DELETE",
           headers: {

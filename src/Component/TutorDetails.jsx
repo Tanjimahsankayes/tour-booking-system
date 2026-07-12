@@ -38,17 +38,13 @@ const TutorDetails = ({ tutor, user }) => {
     _id,
   } = tutor;
 
-  // Check booking restrictions
   const checkBookingRestrictions = () => {
-    // Check slot availability
     if (!totalSlots || totalSlots <= 0) {
       return {
         canBook: false,
         message: "No available slots left.",
       };
     }
-
-    // Check session date restriction
     if (sessionStartDate) {
       const today = new Date();
       today.setHours(0, 0, 0, 0);

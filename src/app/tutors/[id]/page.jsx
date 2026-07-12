@@ -10,8 +10,9 @@ export const metadata = {
 
 const TutorDetailsPage = async ({ params }) => {
   const { id } = await params;
-
-  // Private route protection
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -21,8 +22,15 @@ const TutorDetailsPage = async ({ params }) => {
     redirect("/auth/signin");
   }
 
+  
+
+  console.log(token)
+
   const res = await fetch(`http://localhost:5000/tutor/${id}`, {
     cache: "no-store",
+    headers: {
+      authorization : `Bearer ${token}`
+    }
   });
 
   if (!res.ok) {
@@ -37,7 +45,6 @@ const TutorDetailsPage = async ({ params }) => {
   }
 
   const tutor = await res.json();
-
   return <TutorDetails tutor={tutor} user={user} />;
 };
 

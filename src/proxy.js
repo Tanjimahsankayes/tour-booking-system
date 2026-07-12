@@ -14,5 +14,10 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/add-tutors"],
+  matcher: [
+    "/add-tutors",
+    "/my-tutors",
+    "/my-booked-sessions",
+    "/tutors/:path",
+  ],
 };

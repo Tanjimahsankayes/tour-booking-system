@@ -1,4 +1,19 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
+@theme {
+  --color-dark-bg: #111827;
+  --color-dark-surface: #1f2937;
+  --color-dark-border: #374151;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+.dark {
+  color-scheme: dark;
+}
 
