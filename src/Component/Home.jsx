@@ -121,7 +121,7 @@ const Home = () => {
 
                   <Link
                     href="/tutors"
-                    className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                    className="inline-block bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
                     Find Your Tutor
                   </Link>
@@ -134,13 +134,13 @@ const Home = () => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm z-10"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 dark:bg-black/30 dark:hover:bg-black/50 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm z-10"
         >
           <MdKeyboardArrowLeft size={24} />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm z-10"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 dark:bg-black/30 dark:hover:bg-black/50 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm z-10"
         >
           <MdKeyboardArrowRight size={24} />
         </button>

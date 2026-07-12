@@ -93,9 +93,9 @@ const TutorDetails = ({ tutor, user }) => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl overflow-hidden">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-xl overflow-hidden">
           {/* Header Section */}
           <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-6 md:px-8 py-8">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
@@ -154,36 +154,36 @@ const TutorDetails = ({ tutor, user }) => {
           <div className="p-6 md:p-8">
             {/* Availability Section */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="bg-linear-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 border border-blue-100">
+              <div className="bg-linear-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-2xl p-5 border border-blue-100 dark:border-blue-800">
                 <div className="flex items-center mb-3">
                   <Calendar className="w-5 h-5 text-blue-600 mr-2" />
-                  <h3 className="font-semibold text-gray-800">
+                  <h3 className="font-semibold text-gray-800 dark:text-gray-200">
                     Available Days
                   </h3>
                 </div>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
                   {availableDays || "Not specified"}
                 </p>
               </div>
 
-              <div className="bg-linear-to-br from-purple-50 to-pink-50 rounded-2xl p-5 border border-purple-100">
+              <div className="bg-linear-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-5 border border-purple-100 dark:border-purple-800">
                 <div className="flex items-center mb-3">
                   <Clock className="w-5 h-5 text-purple-600 mr-2" />
-                  <h3 className="font-semibold text-gray-800">
+                  <h3 className="font-semibold text-gray-800 dark:text-gray-200">
                     Available Time
                   </h3>
                 </div>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
                   {availableTime || "Not specified"}
                 </p>
               </div>
 
-              <div className="bg-linear-to-br from-green-50 to-teal-50 rounded-2xl p-5 border border-green-100">
+              <div className="bg-linear-to-br from-green-50 to-teal-50 dark:from-green-900/30 dark:to-teal-900/30 rounded-2xl p-5 border border-green-100 dark:border-green-800">
                 <div className="flex items-center mb-3">
                   <User className="w-5 h-5 text-green-600 mr-2" />
-                  <h3 className="font-semibold text-gray-800">Total Slots</h3>
+                  <h3 className="font-semibold text-gray-800 dark:text-gray-200">Total Slots</h3>
                 </div>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
                   {totalSlots
                     ? `${totalSlots} slots available`
                     : "Not specified"}
@@ -193,14 +193,14 @@ const TutorDetails = ({ tutor, user }) => {
 
             {/* Session Start Date */}
             {sessionStartDate && (
-              <div className="bg-linear-to-r from-amber-50 to-orange-50 rounded-2xl p-5 border border-amber-100 mb-8">
+              <div className="bg-linear-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 rounded-2xl p-5 border border-amber-100 dark:border-amber-800 mb-8">
                 <div className="flex items-center">
                   <Calendar className="w-5 h-5 text-amber-600 mr-3" />
                   <div>
                     <h3 className="font-semibold text-gray-800 mb-1">
                       Session Start Date
                     </h3>
-                    <p className="text-gray-600 text-sm">{sessionStartDate}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">{sessionStartDate}</p>
                   </div>
                 </div>
               </div>
@@ -210,12 +210,12 @@ const TutorDetails = ({ tutor, user }) => {
             <div className="mb-8">
               <div className="flex items-center mb-4">
                 <FileText className="w-5 h-5 text-blue-600 mr-2" />
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
                   Teaching Experience
                 </h3>
               </div>
-              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
-                <p className="text-gray-700 leading-relaxed">
+              <div className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   {experience || "No experience information provided."}
                 </p>
               </div>
@@ -235,7 +235,7 @@ const TutorDetails = ({ tutor, user }) => {
                 <Calendar className="w-5 h-5 mr-2" />
                 {bookingRestriction.canBook ? "Book a Session" : "Booking Unavailable"}
               </button>
-              <button className="flex-1 bg-white border-2 border-blue-600 text-blue-600 font-semibold py-4 px-6 rounded-xl hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center">
+              <button className="flex-1 bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold py-4 px-6 rounded-xl hover:bg-blue-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center">
                 <Star className="w-5 h-5 mr-2" />
                 Contact Tutor
               </button>
@@ -243,14 +243,14 @@ const TutorDetails = ({ tutor, user }) => {
 
             {/* Booking Restriction Message */}
             {!bookingRestriction.canBook && (
-              <div className="mt-4 bg-red-50 border border-red-200 rounded-xl p-4 flex items-start">
+              <div className="mt-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl p-4 flex items-start">
                 <AlertCircle className="w-5 h-5 text-red-500 mr-3 mt-0.5" />
                 <div>
-                  <p className="text-red-800 font-medium text-sm">
+                  <p className="text-red-800 dark:text-red-400 font-medium text-sm">
                     {bookingRestriction.message}
                   </p>
                   {totalSlots === 0 && (
-                    <p className="text-red-600 text-xs mt-1">
+                    <p className="text-red-600 dark:text-red-400 text-xs mt-1">
                       This session is fully booked. You can't join at the moment.
                     </p>
                   )}
@@ -261,13 +261,13 @@ const TutorDetails = ({ tutor, user }) => {
         </div>
 
         {/* Additional Info Card */}
-        <div className="mt-6 bg-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
+        <div className="mt-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-2xl p-6 border border-white/20 dark:border-gray-700">
           <div className="flex items-start">
-            <div className="shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+            <div className="shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-4">
               <CheckCircle className="w-5 h-5 text-blue-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-800 mb-1">
+              <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
                 Verified Tutor Profile
               </h4>
               <p className="text-gray-600 text-sm">

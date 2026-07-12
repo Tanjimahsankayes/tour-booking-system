@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <Home />
       <About></About>
       <ServicesPage></ServicesPage>

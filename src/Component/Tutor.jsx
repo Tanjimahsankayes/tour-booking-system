@@ -54,7 +54,7 @@ const TutorPage = ({ tutor }) => {
 
   return (
     <Link href={`/tutors/${_id}`} className="block">
-      <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+      <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
         {/* Header */}
         <div className="bg-linear-to-r from-blue-600 to-indigo-600 p-4 sm:p-5">
           <div className="flex items-center gap-4">
@@ -104,7 +104,7 @@ const TutorPage = ({ tutor }) => {
         {/* Content */}
         <div className="p-4 sm:p-5 space-y-3">
           {/* Institution */}
-          <div className="flex items-center text-gray-600 text-sm">
+          <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
             <Building2 className="w-4 h-4 mr-2 text-blue-500" />
             <span className="truncate">
               {institution || "Institution not specified"}
@@ -112,7 +112,7 @@ const TutorPage = ({ tutor }) => {
           </div>
 
           {/* Location */}
-          <div className="flex items-center text-gray-600 text-sm">
+          <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
             <MapPin className="w-4 h-4 mr-2 text-blue-500" />
             <span className="truncate">
               {location || "Location not specified"}

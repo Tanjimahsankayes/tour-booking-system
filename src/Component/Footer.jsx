@@ -4,7 +4,7 @@ import { IoLogoYoutube } from "react-icons/io5";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 dark:bg-black text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Tutor Services Links */}
@@ -116,7 +116,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright Information */}
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <div className="border-t border-gray-800 dark:border-gray-700 mt-8 pt-8 text-center text-gray-400">
           <p>
             &copy; {new Date().getFullYear()} Tutor Booking System. All rights
             reserved.

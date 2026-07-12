@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSession } from "@/lib/auth-client";
 import { signOut } from "@/lib/auth-client";
 import Image from "next/image";
+import ThemeToggle from "@/Component/ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,12 +13,12 @@ const Navbar = () => {
   const user = data?.user;
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors duration-200">
       <div className="container mx-auto px-4">
         <div className="relative flex justify-between items-center py-4">
           <Link
             href="/"
-            className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition"
+            className="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition"
           >
             Tutor Booking
           </Link>
@@ -25,13 +26,13 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <Link
               href="/"
-              className="text-gray-700 hover:text-blue-600 transition font-medium"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
             >
               Home
             </Link>
             <Link
               href="/tutors"
-              className="text-gray-700 hover:text-blue-600 transition font-medium"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
             >
               Tutors
             </Link>
@@ -41,34 +42,34 @@ const Navbar = () => {
                 <>
                   <Link
                     href="/add-tutors"
-                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
                   >
                     Add Tutors
                   </Link>
 
-                  <Link href="/my-tutors">My Tutors</Link>
+                  <Link href="/my-tutors" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">My Tutors</Link>
 
-                  <Link href="/my-booked-sessions">My Booked Sessions</Link>
+                  <Link href="/my-booked-sessions" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">My Booked Sessions</Link>
                 </>
               ) : (
                 <>
                   <Link
                     href="/services"
-                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
                   >
                     Services
                   </Link>
 
                   <Link
                     href="/about"
-                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
                   >
                     About
                   </Link>
 
                   <Link
                     href="/contact"
-                    className="text-gray-700 hover:text-blue-600 transition font-medium"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
                   >
                     Contact
                   </Link>
@@ -78,6 +79,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             {user ? (
               <>
                 <button
@@ -108,7 +110,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-700 focus:outline-none"
+            className="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none"
           >
             <svg
               className="w-6 h-6"
@@ -139,74 +141,73 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden pb-4">
             <div className="flex flex-col space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-gray-700 dark:text-gray-300 font-medium">Theme</span>
+                <ThemeToggle />
+              </div>
               <Link
                 href="/"
-                className="text-gray-700 hover:text-blue-600 transition font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
               >
                 Home
               </Link>
               <Link
                 href="/tutors"
-                className="text-gray-700 hover:text-blue-600 transition font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
               >
                 Tutors
               </Link>
               <Link
                 href="/services"
-                className="text-gray-700 hover:text-blue-600 transition font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
               >
                 Services
               </Link>
               <Link
                 href="/about"
-                className="text-gray-700 hover:text-blue-600 transition font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="text-gray-700 hover:text-blue-600 transition font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
               >
                 Contact
               </Link>
-              <div>
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 {user ? (
                   <>
-                    <p>Welcome, {user.name}! </p>
-                    <div>
-
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">Welcome, {user.name}!</p>
+                    <div className="flex items-center gap-3 mb-3">
                       <Image
                         src={user.image}
                         alt={user.name}
-                        className="w-10 h-10 rounded-full cursor-pointer"
+                        className="w-10 h-10 rounded-full"
                       />
                     </div>
                     <button
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center w-full"
                       onClick={() => signOut()}
                     >
                       Log Out
                     </button>
                   </>
                 ) : (
-                  <>
-                    <div className="hidden md:flex items-center space-x-4 flex-col space-y-2 pt-2 border-t border-gray-200">
-                      <Link
-                        href="/auth/signin"
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
-                      >
-                        Login
-                      </Link>
-                      <Link
-                        href="/auth/signup"
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
-                      >
-                        Register
-                      </Link>
-
-                      <div></div>
-                    </div>
-                  </>
+                  <div className="flex flex-col space-y-2">
+                    <Link
+                      href="/auth/signin"
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/auth/signup"
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-center"
+                    >
+                      Register
+                    </Link>
+                  </div>
                 )}
               </div>
             </div>
