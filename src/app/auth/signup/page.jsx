@@ -13,6 +13,7 @@ const SignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    image: "",
     password: "",
     confirmPassword: "",
   });
@@ -38,6 +39,10 @@ const SignUp = () => {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
+    }
+
+    if (formData.image && !/^https?:\/\/.+/.test(formData.image)) {
+      newErrors.image = "Please enter a valid URL";
     }
 
     if (!formData.password) {
@@ -68,6 +73,7 @@ const SignUp = () => {
       const {data, error} = await authClient.signUp.email({
         name : formData.name,
         email : formData.email,
+        image : formData.image,
         password : formData.password,
         callbackURL : '/'
       });
@@ -94,10 +100,10 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
       <div className="w-full max-w-5xl flex bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
 
-        <div className="hidden lg:flex lg:w-1/2 bg-linear-to-br from-indigo-600 to-purple-700 p-12 flex-col justify-center">
+        <div className="hidden lg:flex lg:w-1/2 bg-purple-700 p-12 flex-col justify-center">
           <div className="text-white">
             <h1 className="text-4xl font-bold mb-4">
               Start Your Learning Journey
@@ -258,6 +264,32 @@ const SignUp = () => {
                 )}
               </div>
 
+              {/* Image URL Field */}
+              <div>
+                <label
+                  htmlFor="image"
+                  className="block text-sm font-medium text-gray-100 mb-2"
+                >
+                  Profile Image URL (Optional)
+                </label>
+                <input
+                  id="image"
+                  name="image"
+                  type="url"
+                  value={formData.image}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-3 rounded-xl border ${
+                    errors.image
+                      ? "border-red-500 bg-red-50"
+                      : "border-gray-300 bg-gray-50"
+                  } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
+                  placeholder="https://example.com/profile-image.jpg"
+                />
+                {errors.image && (
+                  <p className="mt-1 text-sm text-red-600">{errors.image}</p>
+                )}
+              </div>
+
               {/* Role Selection */}
               <div>
                 <label className="block text-sm font-medium text-gray-100 mb-3">
@@ -372,7 +404,7 @@ const SignUp = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
+                className="w-full bg-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
               >
                 {isLoading ? "Creating Account..." : "Create Account"}
               </button>

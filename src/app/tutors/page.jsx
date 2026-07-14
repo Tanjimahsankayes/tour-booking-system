@@ -10,6 +10,11 @@ export const metadata = {
 };
 
 const TutorsPage = async () => {
+
+  const {token} = await auth.api.getToken({
+      headers: await headers(),
+    });
+
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -17,12 +22,14 @@ const TutorsPage = async () => {
   const user = session?.user;
   if (!user) {
     redirect("/auth/signin");
-    return (
-      <div>Please Sign in to access Tutors page.</div>
-    );
   }
 
-  const res = await fetch("http://localhost:5000/tutor");
+
+  const res = await fetch("http://localhost:5000/tutor", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const tutors = await res.json();
 
   return <TutorsClient tutors={tutors} />;

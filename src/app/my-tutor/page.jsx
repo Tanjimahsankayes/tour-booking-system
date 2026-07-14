@@ -9,7 +9,6 @@ export const metadata = {
 };
 
 const MyTutor = async () => {
-  // Private route protection
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -19,7 +18,27 @@ const MyTutor = async () => {
     redirect("/auth/signin");
   }
 
-  return <MyTutorClient user={user} />;
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  try {
+    const res = await fetch(`http://localhost:5000/my-tutor`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return <MyTutorClient initialTutors={[]} user={user} />;
+    }
+
+    const mytutors = await res.json();
+    return <MyTutorClient initialTutors={mytutors} token={token} user={user} />;
+  } catch (error) {
+    return <MyTutorClient initialTutors={[]} user={user} />;
+  }
 };
 
 export default MyTutor;

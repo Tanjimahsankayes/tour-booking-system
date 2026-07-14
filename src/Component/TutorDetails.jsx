@@ -93,14 +93,14 @@ const TutorDetails = ({ tutor, user }) => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+    <div className="min-h-screen bg-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-xl overflow-hidden">
           {/* Header Section */}
-          <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-6 md:px-8 py-8">
+          <div className="bg-indigo-600 px-6 md:px-8 py-8">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
               <div className="shrink-0">
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-linear-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg overflow-hidden">
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-indigo-500 flex items-center justify-center shadow-lg overflow-hidden">
                   {profilePhoto ? (
                     <Image
                       src={profilePhoto}
@@ -154,7 +154,7 @@ const TutorDetails = ({ tutor, user }) => {
           <div className="p-6 md:p-8">
             {/* Availability Section */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="bg-linear-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-2xl p-5 border border-blue-100 dark:border-blue-800">
+              <div className="bg-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-2xl p-5 border border-blue-100 dark:border-blue-800">
                 <div className="flex items-center mb-3">
                   <Calendar className="w-5 h-5 text-blue-600 mr-2" />
                   <h3 className="font-semibold text-gray-800 dark:text-gray-200">
@@ -166,7 +166,7 @@ const TutorDetails = ({ tutor, user }) => {
                 </p>
               </div>
 
-              <div className="bg-linear-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-5 border border-purple-100 dark:border-purple-800">
+              <div className="bg-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-5 border border-purple-100 dark:border-purple-800">
                 <div className="flex items-center mb-3">
                   <Clock className="w-5 h-5 text-purple-600 mr-2" />
                   <h3 className="font-semibold text-gray-800 dark:text-gray-200">
@@ -178,7 +178,7 @@ const TutorDetails = ({ tutor, user }) => {
                 </p>
               </div>
 
-              <div className="bg-linear-to-br from-green-50 to-teal-50 dark:from-green-900/30 dark:to-teal-900/30 rounded-2xl p-5 border border-green-100 dark:border-green-800">
+              <div className="bg-teal-50 dark:from-green-900/30 dark:to-teal-900/30 rounded-2xl p-5 border border-green-100 dark:border-green-800">
                 <div className="flex items-center mb-3">
                   <User className="w-5 h-5 text-green-600 mr-2" />
                   <h3 className="font-semibold text-gray-800 dark:text-gray-200">Total Slots</h3>
@@ -193,7 +193,7 @@ const TutorDetails = ({ tutor, user }) => {
 
             {/* Session Start Date */}
             {sessionStartDate && (
-              <div className="bg-linear-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 rounded-2xl p-5 border border-amber-100 dark:border-amber-800 mb-8">
+              <div className="bg-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 rounded-2xl p-5 border border-amber-100 dark:border-amber-800 mb-8">
                 <div className="flex items-center">
                   <Calendar className="w-5 h-5 text-amber-600 mr-3" />
                   <div>
@@ -206,7 +206,6 @@ const TutorDetails = ({ tutor, user }) => {
               </div>
             )}
 
-            {/* Experience Section */}
             <div className="mb-8">
               <div className="flex items-center mb-4">
                 <FileText className="w-5 h-5 text-blue-600 mr-2" />
@@ -228,7 +227,7 @@ const TutorDetails = ({ tutor, user }) => {
                 disabled={!bookingRestriction.canBook}
                 className={`flex-1 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center ${
                   bookingRestriction.canBook
-                    ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    ? "bg-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }`}
               >
@@ -279,8 +278,6 @@ const TutorDetails = ({ tutor, user }) => {
           </div>
         </div>
       </div>
-
-      {/* Booking Modal */}
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

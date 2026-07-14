@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { X, Save, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 
-const UpdateTutorModal = ({ isOpen, onClose, tutor, onUpdate }) => {
+const UpdateTutorModal = ({ isOpen, onClose, tutor, onUpdate, token }) => {
   const [formData, setFormData] = useState({
     name: "",
     subject: "",
@@ -46,11 +46,14 @@ const UpdateTutorModal = ({ isOpen, onClose, tutor, onUpdate }) => {
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation
+    const updatedTutor = {
+      ...formData,
+    };
+
+
     if (!formData.name.trim()) {
       toast.error("Please enter tutor name");
       return;
@@ -74,16 +77,13 @@ const UpdateTutorModal = ({ isOpen, onClose, tutor, onUpdate }) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`/api/tutors/${tutor._id}`, {
+      const response = await fetch(`http://localhost:5000/my-tutor/${tutor._id}`, {
         method: "PATCH",
         headers: {
+          authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...formData,
-          hourlyFee: Number(formData.hourlyFee),
-          totalSlots: Number(formData.totalSlots),
-        }),
+        body: JSON.stringify(updatedTutor),
       });
 
       const data = await response.json();
@@ -92,9 +92,19 @@ const UpdateTutorModal = ({ isOpen, onClose, tutor, onUpdate }) => {
         throw new Error(data.error || "Failed to update tutor");
       }
 
-      toast.success("Tutor updated successfully!");
-      onUpdate(data.tutor);
-      onClose();
+      if (data.modifiedCount > 0 || data.matchedCount > 0) {
+        toast.success("Tutor updated successfully!");
+
+        onUpdate({
+          ...tutor,
+          ...updatedTutor,
+        });
+
+        onClose();
+      } else {
+        toast.error("No changes were made.");
+      }
+
     } catch (error) {
       toast.error(error.message || "Failed to update tutor");
     } finally {

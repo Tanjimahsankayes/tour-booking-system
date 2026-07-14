@@ -55,12 +55,12 @@ const TutorPage = ({ tutor }) => {
   return (
     <Link href={`/tutors/${_id}`} className="block">
       <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
-        {/* Header */}
-        <div className="bg-linear-to-r from-blue-600 to-indigo-600 p-4 sm:p-5">
+
+        <div className="bg-indigo-600 p-4 sm:p-5">
           <div className="flex items-center gap-4">
-            {/* Profile Image */}
+
             <div className="shrink-0">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-linear-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg overflow-hidden">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-indigo-500 flex items-center justify-center shadow-lg overflow-hidden">
                 {profilePhoto ? (
                   <Image
                     src={profilePhoto}
@@ -75,7 +75,7 @@ const TutorPage = ({ tutor }) => {
               </div>
             </div>
 
-            {/* Name & Subject */}
+
             <div className="flex-1 min-w-0">
               <h3 className="text-lg sm:text-xl font-bold text-white truncate">
                 {name || "Tutor Name"}
@@ -91,7 +91,6 @@ const TutorPage = ({ tutor }) => {
               </div>
             </div>
 
-            {/* Hourly Fee */}
             <div className="shrink-0 text-right">
               <p className="text-white/80 text-xs mb-1">Hourly Fee</p>
               <p className="text-lg sm:text-xl font-bold text-white">
@@ -101,9 +100,7 @@ const TutorPage = ({ tutor }) => {
           </div>
         </div>
 
-        {/* Content */}
         <div className="p-4 sm:p-5 space-y-3">
-          {/* Institution */}
           <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
             <Building2 className="w-4 h-4 mr-2 text-blue-500" />
             <span className="truncate">
@@ -111,7 +108,6 @@ const TutorPage = ({ tutor }) => {
             </span>
           </div>
 
-          {/* Location */}
           <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
             <MapPin className="w-4 h-4 mr-2 text-blue-500" />
             <span className="truncate">
@@ -119,8 +115,7 @@ const TutorPage = ({ tutor }) => {
             </span>
           </div>
 
-          {/* View Profile Button */}
-          <button className="w-full mt-4 bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 text-sm flex items-center justify-center">
+          <button className="w-full mt-4 bg-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 text-sm flex items-center justify-center">
             Book Session
           </button>
         </div>

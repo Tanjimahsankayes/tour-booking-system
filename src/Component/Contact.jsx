@@ -97,9 +97,9 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
       {/* Hero Section */}
-      <div className="bg-linear-to-r from-blue-600 via-blue-700 to-indigo-800 text-white py-20">
+      <div className="bg-indigo-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
@@ -276,7 +276,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
+                  className="w-full bg-indigo-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
@@ -433,7 +433,7 @@ const Contact = () => {
         {/* Google Maps Placeholder */}
         <div className="mt-12">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-            <div className="h-80 bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 flex items-center justify-center">
+            <div className="h-80 bg-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 flex items-center justify-center">
               <div className="text-center flex flex-col justify-center items-center p-4">
                 <FaMap size={35} />
                 <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">

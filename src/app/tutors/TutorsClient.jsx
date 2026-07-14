@@ -8,6 +8,8 @@ const TutorsClient = ({ tutors }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("All Subjects");
   const [showFilters, setShowFilters] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const SUBJECT_FILTERS = [
     "All Subjects",
@@ -35,9 +37,30 @@ const TutorsClient = ({ tutors }) => {
         selectedFilter === "All Subjects" ||
         tutor.subject?.toLowerCase() === selectedFilter.toLowerCase();
 
-      return matchesSearch && matchesFilter;
+      const matchesDateRange = () => {
+        if (!startDate && !endDate) return true;
+        
+        const tutorDate = tutor.sessionStartDate ? new Date(tutor.sessionStartDate) : null;
+        if (!tutorDate) return false;
+        
+        const start = startDate ? new Date(startDate) : null;
+        const end = endDate ? new Date(endDate) : null;
+        
+        if (start && end) {
+          return tutorDate >= start && tutorDate <= end;
+        }
+        if (start) {
+          return tutorDate >= start;
+        }
+        if (end) {
+          return tutorDate <= end;
+        }
+        return true;
+      };
+
+      return matchesSearch && matchesFilter && matchesDateRange();
     });
-  }, [tutors, searchQuery, selectedFilter]);
+  }, [tutors, searchQuery, selectedFilter, startDate, endDate]);
 
   const handleFilterClick = (filter) => {
     setSelectedFilter(filter);
@@ -47,10 +70,21 @@ const TutorsClient = ({ tutors }) => {
     setSearchQuery("");
   };
 
+  const clearDateFilters = () => {
+    setStartDate("");
+    setEndDate("");
+  };
+
+  const clearAllFilters = () => {
+    setSearchQuery("");
+    setSelectedFilter("All Subjects");
+    setStartDate("");
+    setEndDate("");
+  };
+
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Hero Section */}
-      <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div className="min-h-screen bg-indigo-100">
+      <div className="bg-indigo-600 px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
@@ -138,8 +172,41 @@ const TutorsClient = ({ tutors }) => {
           </div>
         </div>
 
+        {/* Date Range Filter */}
+        <div className={`mt-4 p-4 bg-white border border-gray-200 rounded-xl ${showFilters ? 'block' : 'hidden'}`}>
+          <h4 className="text-sm font-semibold text-gray-700 mb-3">Filter by Session Start Date</h4>
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex-1 min-w-[200px]">
+              <label className="block text-xs text-gray-600 mb-1">Start Date</label>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="flex-1 min-w-[200px]">
+              <label className="block text-xs text-gray-600 mb-1">End Date</label>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            {(startDate || endDate) && (
+              <button
+                onClick={clearDateFilters}
+                className="px-3 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                Clear Dates
+              </button>
+            )}
+          </div>
+        </div>
+
         {/* Active Filters Display */}
-        {(searchQuery || selectedFilter !== "All Subjects") && (
+        {(searchQuery || selectedFilter !== "All Subjects" || startDate || endDate) && (
           <div className="flex flex-wrap items-center gap-2 mt-4">
             <span className="text-sm text-gray-600">Active filters:</span>
             {searchQuery && (
@@ -164,6 +231,28 @@ const TutorsClient = ({ tutors }) => {
                 </button>
               </span>
             )}
+            {startDate && (
+              <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+                From: {startDate}
+                <button
+                  onClick={() => setStartDate("")}
+                  className="ml-2 hover:text-green-900"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </span>
+            )}
+            {endDate && (
+              <span className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+                To: {endDate}
+                <button
+                  onClick={() => setEndDate("")}
+                  className="ml-2 hover:text-purple-900"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </span>
+            )}
           </div>
         )}
       </div>
@@ -181,12 +270,9 @@ const TutorsClient = ({ tutors }) => {
                 ? "Try adjusting your search or filters"
                 : "Check back later for new tutors"}
             </p>
-            {(searchQuery || selectedFilter !== "All Subjects") && (
+            {(searchQuery || selectedFilter !== "All Subjects" || startDate || endDate) && (
               <button
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedFilter("All Subjects");
-                }}
+                onClick={clearAllFilters}
                 className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
               >
                 Clear All Filters

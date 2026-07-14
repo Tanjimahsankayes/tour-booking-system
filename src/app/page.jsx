@@ -1,5 +1,6 @@
 import About from "@/Component/About";
 import Contact from "@/Component/Contact";
+import Featured from "@/Component/Featured";
 import Home from "@/Component/Home";
 import ServicesPage from "@/Component/Services";
 import TutorPage from "@/Component/Tutor";
@@ -14,8 +15,8 @@ export default function Page() {
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <Home />
       <About></About>
+      <Featured></Featured>
       <ServicesPage></ServicesPage>
-      {/* <TutorPage></TutorPage> */}
       <Contact></Contact>
     </div>
   );

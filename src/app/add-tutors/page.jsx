@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import { useSession } from "@/lib/auth-client";
 import {
   User,
   Image as ImageIcon,
@@ -19,6 +20,8 @@ import {
   XCircle,
   Search,
 } from "lucide-react";
+import Image from "next/image";
+
 
 const SUBJECTS = [
   "Mathematics",
@@ -63,6 +66,8 @@ const AddTutors = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [subjectSearch, setSubjectSearch] = useState("");
   const [showSubjectDropdown, setShowSubjectDropdown] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const { data: session } = useSession();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +75,6 @@ const AddTutors = () => {
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -148,32 +152,34 @@ const AddTutors = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formDataObj = new FormData(e.currentTarget)
-    const tutor = Object.fromEntries(formDataObj.entries());
-    console.log(tutor);
-
-    const res = await fetch("http://localhost:5000/tutor", {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(tutor)
-    });
-
-    const data = await res.json()
-    if (res.ok) {
-      toast.success("Tutor added successfully!");
-      console.log(data);
-    } else {
-      toast.error(data.message || "Failed to add tutor!");
+    if (!validateForm()) {
+      return;
     }
 
-    if (validateForm()) {
-      setIsLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("http://localhost:5000/tutor", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          userId: session?.user?.id,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        toast.success("Tutor added successfully!");
+        console.log(data);
+      } else {
+        toast.error(data.message || "Failed to add tutor!");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    } finally {
       setIsLoading(false);
-      toast.success("Tutor registration successful!");
-      console.log("Form submitted:", formData);
     }
   };
 
@@ -182,7 +188,7 @@ const AddTutors = () => {
   );
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -200,7 +206,7 @@ const AddTutors = () => {
                 transition={{ delay: 0.2 }}
                 className="text-center mb-8"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-blue-600 to-indigo-600 rounded-2xl mb-4 shadow-lg">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl mb-4 shadow-lg">
                   <GraduationCap className="w-8 h-8 text-white" />
                 </div>
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
@@ -230,7 +236,9 @@ const AddTutors = () => {
                       onChange={handleChange}
                       placeholder="Enter your full name"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                        errors.name ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                        errors.name
+                          ? "border-red-500 bg-red-50"
+                          : "border-gray-200 bg-gray-50"
                       } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                     />
                   </div>
@@ -277,6 +285,7 @@ const AddTutors = () => {
                     <BookOpen className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 z-10" />
                     <input
                       type="text"
+                      name="subject"
                       value={formData.subject || subjectSearch}
                       onChange={(e) => {
                         setSubjectSearch(e.target.value);
@@ -285,7 +294,9 @@ const AddTutors = () => {
                       onFocus={() => setShowSubjectDropdown(true)}
                       placeholder="Search or select a subject"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                        errors.subject ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                        errors.subject
+                          ? "border-red-500 bg-red-50"
+                          : "border-gray-200 bg-gray-50"
                       } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                     />
                     {showSubjectDropdown && (
@@ -337,7 +348,9 @@ const AddTutors = () => {
                         onChange={handleChange}
                         placeholder="e.g., Sat, Sun, Mon"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                          errors.availableDays ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                          errors.availableDays
+                            ? "border-red-500 bg-red-50"
+                            : "border-gray-200 bg-gray-50"
                         } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
@@ -366,7 +379,9 @@ const AddTutors = () => {
                         onChange={handleChange}
                         placeholder="e.g., 10 AM - 2 PM"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                          errors.availableTime ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                          errors.availableTime
+                            ? "border-red-500 bg-red-50"
+                            : "border-gray-200 bg-gray-50"
                         } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
@@ -398,7 +413,9 @@ const AddTutors = () => {
                         onChange={handleChange}
                         placeholder="500"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                          errors.hourlyFee ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                          errors.hourlyFee
+                            ? "border-red-500 bg-red-50"
+                            : "border-gray-200 bg-gray-50"
                         } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
@@ -427,7 +444,9 @@ const AddTutors = () => {
                         onChange={handleChange}
                         placeholder="10"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                          errors.totalSlots ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                          errors.totalSlots
+                            ? "border-red-500 bg-red-50"
+                            : "border-gray-200 bg-gray-50"
                         } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
@@ -457,7 +476,9 @@ const AddTutors = () => {
                       value={formData.sessionStartDate}
                       onChange={handleChange}
                       className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                        errors.sessionStartDate ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                        errors.sessionStartDate
+                          ? "border-red-500 bg-red-50"
+                          : "border-gray-200 bg-gray-50"
                       } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                     />
                   </div>
@@ -487,7 +508,9 @@ const AddTutors = () => {
                       onChange={handleChange}
                       placeholder="e.g., University of Dhaka"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                        errors.institution ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                        errors.institution
+                          ? "border-red-500 bg-red-50"
+                          : "border-gray-200 bg-gray-50"
                       } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                     />
                   </div>
@@ -499,7 +522,6 @@ const AddTutors = () => {
                   )}
                 </motion.div>
 
-                {/* Experience with Character Counter */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -517,7 +539,9 @@ const AddTutors = () => {
                       rows={4}
                       placeholder="Describe your teaching experience, qualifications, and expertise..."
                       className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                        errors.experience ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                        errors.experience
+                          ? "border-red-500 bg-red-50"
+                          : "border-gray-200 bg-gray-50"
                       } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none`}
                     />
                   </div>
@@ -528,7 +552,9 @@ const AddTutors = () => {
                         {errors.experience}
                       </p>
                     )}
-                    <span className={`text-xs ml-auto ${formData.experience.length >= 50 ? 'text-green-600' : 'text-gray-400'}`}>
+                    <span
+                      className={`text-xs ml-auto ${formData.experience.length >= 50 ? "text-green-600" : "text-gray-400"}`}
+                    >
                       {formData.experience.length}/500 characters
                     </span>
                   </div>
@@ -552,7 +578,9 @@ const AddTutors = () => {
                       onChange={handleChange}
                       placeholder="e.g., Dhanmondi, Dhaka"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                        errors.location ? "border-red-500 bg-red-50" : "border-gray-200 bg-gray-50"
+                        errors.location
+                          ? "border-red-500 bg-red-50"
+                          : "border-gray-200 bg-gray-50"
                       } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                     />
                   </div>
@@ -597,7 +625,9 @@ const AddTutors = () => {
                         />
                         <div className="flex flex-col items-center text-center">
                           <mode.icon className="w-6 h-6 mb-2 text-blue-600" />
-                          <span className="text-sm font-medium text-gray-900">{mode.label}</span>
+                          <span className="text-sm font-medium text-gray-900">
+                            {mode.label}
+                          </span>
                         </div>
                       </label>
                     ))}
@@ -614,13 +644,29 @@ const AddTutors = () => {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] hover:shadow-lg"
+                    className="w-full bg-indigo-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] hover:shadow-lg"
                   >
                     {isLoading ? (
                       <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg
+                          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         Creating Profile...
                       </span>
@@ -633,29 +679,30 @@ const AddTutors = () => {
             </div>
 
             {/* Right Side - Live Preview */}
-            <div className="lg:col-span-2 bg-linear-to-br from-slate-900 via-purple-900 to-slate-900 p-6 md:p-8">
+            <div className="lg:col-span-2 bg-purple-900 to-slate-900 p-6 md:p-8">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
                 className="sticky top-8"
               >
-                <h3 className="text-white text-lg font-semibold mb-6">Live Preview</h3>
-                
+                <h3 className="text-white text-lg font-semibold mb-6">
+                  Live Preview
+                </h3>
+
                 {/* Profile Preview Card */}
                 <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
                   {/* Profile Image */}
                   <div className="flex flex-col items-center mb-6">
-                    <div className="w-24 h-24 rounded-full bg-linear-to-br from-blue-500 to-indigo-500 flex items-center justify-center mb-4 shadow-lg">
+                    <div className="w-24 h-24 rounded-full bg-indigo-500 flex items-center justify-center mb-4 shadow-lg">
                       {formData.profilePhoto ? (
-                        <img
+                        <Image
                           src={formData.profilePhoto}
                           alt="Profile"
+                          width={50}
+                          height={50}
                           className="w-full h-full rounded-full object-cover"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.parentElement.innerHTML = '<GraduationCap className="w-12 h-12 text-white" />';
-                          }}
+                          onError={() => setImageError(true)}
                         />
                       ) : (
                         <GraduationCap className="w-12 h-12 text-white" />
@@ -669,7 +716,7 @@ const AddTutors = () => {
                   {/* Subject Badge */}
                   {formData.subject && (
                     <div className="mb-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-linear-to-r from-blue-500 to-indigo-500 text-white">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-500 text-white">
                         <BookOpen className="w-4 h-4 mr-2" />
                         {formData.subject}
                       </span>
@@ -681,7 +728,9 @@ const AddTutors = () => {
                     <div className="flex items-center text-white/80">
                       <DollarSign className="w-4 h-4 mr-3 text-blue-400" />
                       <span className="text-sm">
-                        {formData.hourlyFee ? `${formData.hourlyFee} BDT/hour` : "Fee not set"}
+                        {formData.hourlyFee
+                          ? `${formData.hourlyFee} BDT/hour`
+                          : "Fee not set"}
                       </span>
                     </div>
                     <div className="flex items-center text-white/80">
@@ -732,7 +781,8 @@ const AddTutors = () => {
                 {/* Info Card */}
                 <div className="mt-6 bg-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10">
                   <p className="text-white/60 text-xs text-center">
-                    This is a live preview of your tutor profile. Fill in the form to see updates in real-time.
+                    This is a live preview of your tutor profile. Fill in the
+                    form to see updates in real-time.
                   </p>
                 </div>
               </motion.div>

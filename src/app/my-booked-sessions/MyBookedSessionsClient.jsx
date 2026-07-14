@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import CancelBookingModal from "@/Component/CancelBookingModal";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
   const [bookings, setBookings] = useState(initialBookings || []);
@@ -27,19 +28,13 @@ const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
     setIsCancelling(true);
     try {
 
-      const {token} = await auth.api.getToken({
-          headers: await headers(),
-        });
-
+      const { token } = await authClient.getToken();
       const response = await fetch(
-        `http://localhost:5000/booking/${selectedBooking._id}`, {
-          headers: {
-            authorization: `Bearer ${token}`
-          }
-        },
+        `http://localhost:5000/booking/${selectedBooking._id}`,
         {
           method: "DELETE",
           headers: {
+            authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -186,7 +181,7 @@ const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
               No booked sessions found
             </h2>
             <p className="text-gray-600 mb-6 sm:mb-8 text-base sm:text-lg">
-              You haven't booked any tutor sessions yet.
+              You haven&apos;t booked any tutor sessions yet.
             </p>
             <Link
               href="/tutors"
@@ -305,7 +300,6 @@ const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
               </div>
             </div>
 
-            {/* Mobile Cards */}
             <div className="lg:hidden grid grid-cols-1 gap-4">
               {bookings.map((booking) => (
                 <BookingCard key={booking._id} booking={booking} />
@@ -314,8 +308,6 @@ const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
           </>
         )}
       </div>
-
-      {/* Cancel Booking Modal */}
       <CancelBookingModal
         isOpen={isCancelModalOpen}
         onClose={() => {
