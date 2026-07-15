@@ -31,6 +31,22 @@ const BookingModal = ({ isOpen, onClose, tutor }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check slot availability
+    if (tutor.totalSlots <= 0) {
+      toast.error("No available slots left.");
+      return;
+    }
+
+    // Check session date availability
+    const currentDate = new Date();
+    const sessionStartDate = tutor.sessionStartDate ? new Date(tutor.sessionStartDate) : null;
+    
+    if (sessionStartDate && currentDate < sessionStartDate) {
+      toast.error("Booking is not available yet for this tutor");
+      return;
+    }
+
     const bookingData = {
       userId: user?.id,
       userImage: user.image,
@@ -88,8 +104,10 @@ const BookingModal = ({ isOpen, onClose, tutor }) => {
 
       const data = await response.json();
 
-
       if (!response.ok) {
+        if (data.error === "No available slots left") {
+          throw new Error("This session is fully booked. You can't join at the moment.");
+        }
         throw new Error(data.error || "Failed to book session");
       }
 
@@ -149,6 +167,10 @@ const BookingModal = ({ isOpen, onClose, tutor }) => {
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-blue-500" />
                 <span>Session: {tutor.sessionStartDate || "N/A"}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4 text-blue-500" />
+                <span>Available Slots: {tutor.totalSlots || 0}</span>
               </div>
             </div>
           </div>

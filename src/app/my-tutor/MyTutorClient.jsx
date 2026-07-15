@@ -33,9 +33,6 @@ const MyTutorClient = ({ user, initialTutors, token }) => {
     );
   };
 
-
-  
-
   const handleDelete = async () => {
     if (!selectedTutor) return;
 

@@ -27,8 +27,8 @@ const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
 
     setIsCancelling(true);
     try {
-
       const { token } = await authClient.getToken();
+
       const response = await fetch(
         `http://localhost:5000/booking/${selectedBooking._id}`,
         {

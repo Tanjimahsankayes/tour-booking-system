@@ -83,6 +83,7 @@ const SignUp = () => {
         return;
       }
       toast.success("Account created successfully!");
+      router.refresh();
       router.push("/");
     }
   };

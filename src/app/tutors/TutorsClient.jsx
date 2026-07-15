@@ -100,7 +100,7 @@ const TutorsClient = ({ tutors }) => {
               </p>
             </div>
 
-            {/* Search Bar */}
+    
             <div className="w-full md:w-96">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -123,7 +123,6 @@ const TutorsClient = ({ tutors }) => {
             </div>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
               <p className="text-2xl font-bold text-white">{tutors.length}</p>
@@ -145,7 +144,6 @@ const TutorsClient = ({ tutors }) => {
         </div>
       </div>
 
-      {/* Filter Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-wrap items-center gap-4">
           <button
@@ -172,7 +170,7 @@ const TutorsClient = ({ tutors }) => {
           </div>
         </div>
 
-        {/* Date Range Filter */}
+       
         <div className={`mt-4 p-4 bg-white border border-gray-200 rounded-xl ${showFilters ? 'block' : 'hidden'}`}>
           <h4 className="text-sm font-semibold text-gray-700 mb-3">Filter by Session Start Date</h4>
           <div className="flex flex-wrap items-center gap-4">
@@ -205,7 +203,7 @@ const TutorsClient = ({ tutors }) => {
           </div>
         </div>
 
-        {/* Active Filters Display */}
+    
         {(searchQuery || selectedFilter !== "All Subjects" || startDate || endDate) && (
           <div className="flex flex-wrap items-center gap-2 mt-4">
             <span className="text-sm text-gray-600">Active filters:</span>
@@ -284,7 +282,7 @@ const TutorsClient = ({ tutors }) => {
             <p className="text-gray-600 text-sm mb-4">
               Showing {filteredTutors.length} of {tutors.length} tutors
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {filteredTutors.map((tutor) => (
                 <div
                   key={tutor._id}
