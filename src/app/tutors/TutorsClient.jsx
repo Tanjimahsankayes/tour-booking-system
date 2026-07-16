@@ -83,8 +83,8 @@ const TutorsClient = ({ tutors }) => {
   };
 
   return (
-    <div className="min-h-screen bg-indigo-100">
-      <div className="bg-indigo-600 px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="bg-indigo-600 dark:bg-indigo-700 px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
@@ -109,7 +109,7 @@ const TutorsClient = ({ tutors }) => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by subject, name, or location..."
-                  className="w-full pl-12 pr-12 py-4 rounded-xl bg-white/95 backdrop-blur-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 shadow-lg"
+                  className="w-full pl-12 pr-12 py-4 rounded-xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 shadow-lg"
                 />
                 {searchQuery && (
                   <button
@@ -148,7 +148,7 @@ const TutorsClient = ({ tutors }) => {
         <div className="flex flex-wrap items-center gap-4">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors"
+            className="hidden inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
             <Filter className="w-4 h-4 mr-2" />
             Filters
@@ -160,8 +160,8 @@ const TutorsClient = ({ tutors }) => {
                 onClick={() => handleFilterClick(filter)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
                   selectedFilter === filter
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
+                    ? "bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-700 dark:hover:bg-blue-800"
+                    : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                 }`}
               >
                 {filter}
@@ -171,31 +171,31 @@ const TutorsClient = ({ tutors }) => {
         </div>
 
        
-        <div className={`mt-4 p-4 bg-white border border-gray-200 rounded-xl ${showFilters ? 'block' : 'hidden'}`}>
-          <h4 className="text-sm font-semibold text-gray-700 mb-3">Filter by Session Start Date</h4>
+        <div className="mt-4 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl">
+          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Filter by Session Start Date</h4>
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex-1 min-w-[200px]">
-              <label className="block text-xs text-gray-600 mb-1">Start Date</label>
+              <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">Start Date</label>
               <input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="flex-1 min-w-[200px]">
-              <label className="block text-xs text-gray-600 mb-1">End Date</label>
+              <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">End Date</label>
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             {(startDate || endDate) && (
               <button
                 onClick={clearDateFilters}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
+                className="px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
                 Clear Dates
               </button>
@@ -206,46 +206,46 @@ const TutorsClient = ({ tutors }) => {
     
         {(searchQuery || selectedFilter !== "All Subjects" || startDate || endDate) && (
           <div className="flex flex-wrap items-center gap-2 mt-4">
-            <span className="text-sm text-gray-600">Active filters:</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">Active filters:</span>
             {searchQuery && (
-              <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+              <span className="inline-flex items-center px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm">
                 Search: "{searchQuery}"
                 <button
                   onClick={clearSearch}
-                  className="ml-2 hover:text-blue-900"
+                  className="ml-2 hover:text-blue-900 dark:hover:text-blue-200"
                 >
                   <X className="w-3 h-3" />
                 </button>
               </span>
             )}
             {selectedFilter !== "All Subjects" && (
-              <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+              <span className="inline-flex items-center px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm">
                 {selectedFilter}
                 <button
                   onClick={() => setSelectedFilter("All Subjects")}
-                  className="ml-2 hover:text-blue-900"
+                  className="ml-2 hover:text-blue-900 dark:hover:text-blue-200"
                 >
                   <X className="w-3 h-3" />
                 </button>
               </span>
             )}
             {startDate && (
-              <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+              <span className="inline-flex items-center px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm">
                 From: {startDate}
                 <button
                   onClick={() => setStartDate("")}
-                  className="ml-2 hover:text-green-900"
+                  className="ml-2 hover:text-green-900 dark:hover:text-green-200"
                 >
                   <X className="w-3 h-3" />
                 </button>
               </span>
             )}
             {endDate && (
-              <span className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+              <span className="inline-flex items-center px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm">
                 To: {endDate}
                 <button
                   onClick={() => setEndDate("")}
-                  className="ml-2 hover:text-purple-900"
+                  className="ml-2 hover:text-purple-900 dark:hover:text-purple-200"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -258,12 +258,12 @@ const TutorsClient = ({ tutors }) => {
       {/* Tutors Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         {filteredTutors.length === 0 ? (
-          <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-12 text-center">
-            <GraduationCap className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl p-12 text-center">
+            <GraduationCap className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
               No Tutors Found
             </h3>
-            <p className="text-gray-500 mb-4">
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
               {searchQuery || selectedFilter !== "All Subjects"
                 ? "Try adjusting your search or filters"
                 : "Check back later for new tutors"}
@@ -271,7 +271,7 @@ const TutorsClient = ({ tutors }) => {
             {(searchQuery || selectedFilter !== "All Subjects" || startDate || endDate) && (
               <button
                 onClick={clearAllFilters}
-                className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
+                className="px-6 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-800 transition-colors"
               >
                 Clear All Filters
               </button>
@@ -279,15 +279,12 @@ const TutorsClient = ({ tutors }) => {
           </div>
         ) : (
           <>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
               Showing {filteredTutors.length} of {tutors.length} tutors
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {filteredTutors.map((tutor) => (
-                <div
-                  key={tutor._id}
-                  className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                >
+                <div key={tutor._id}>
                   <TutorPage tutor={tutor} />
                 </div>
               ))}

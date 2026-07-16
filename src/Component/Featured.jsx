@@ -10,7 +10,7 @@ const Featured = async () => {
   const tutorFeature = await res.json();
 
   return (
-    <div className="min-h-screen bg-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

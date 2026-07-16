@@ -10,20 +10,18 @@ export const metadata = {
 };
 
 const TutorsPage = async () => {
-
-  const {token} = await auth.api.getToken({
-      headers: await headers(),
-    });
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
+  
   const user = session?.user;
   if (!user) {
     redirect("/auth/signin");
   }
 
+  const {token} = await auth.api.getToken({
+      headers: await headers(),
+    });
 
   const res = await fetch("http://localhost:5000/tutor", {
     headers: {

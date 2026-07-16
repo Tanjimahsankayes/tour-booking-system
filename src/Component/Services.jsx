@@ -8,8 +8,8 @@ import { TiTick } from "react-icons/ti";
 
 const ServicesPage = () => {
   return (
-    <div className="min-h-screen bg-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
-      <div className="bg-pink-500 text-white py-24">
+    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+      <div className="bg-pink-500 dark:bg-pink-700 text-white py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Our Services</h1>
           <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto mb-8">
@@ -51,7 +51,7 @@ const ServicesPage = () => {
             <div className="h-3 bg-cyan-400"></div>
             <div className="p-8">
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-500 transition">
-                <FaUserGroup size={30} />
+                <FaUserGroup size={30} className="text-blue-600 dark:text-blue-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 One-on-One Tutoring
@@ -62,15 +62,15 @@ const ServicesPage = () => {
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Customized lesson plans
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Flexible scheduling
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Progress tracking
                 </li>
               </ul>
@@ -82,7 +82,7 @@ const ServicesPage = () => {
             <div className="h-3 bg-pink-400"></div>
             <div className="p-8">
               <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500 transition">
-                <MdGroups2 size={30} />
+                <MdGroups2 size={30} className="text-purple-600 dark:text-purple-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 Group Sessions
@@ -93,15 +93,15 @@ const ServicesPage = () => {
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Small group sizes (3-5 students)
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Interactive discussions
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Cost-effective learning
                 </li>
               </ul>
@@ -113,7 +113,7 @@ const ServicesPage = () => {
             <div className="h-3 bg-teal-400"></div>
             <div className="p-8">
               <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-500 transition">
-                <GiSchoolBag size={30} />
+                <GiSchoolBag size={30} className="text-green-600 dark:text-green-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 Exam Preparation
@@ -124,15 +124,15 @@ const ServicesPage = () => {
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Practice tests & mock exams
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Test-taking strategies
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Score improvement focus
                 </li>
               </ul>
@@ -144,7 +144,7 @@ const ServicesPage = () => {
             <div className="h-3 bg-yellow-400"></div>
             <div className="p-8">
               <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-500 transition">
-                <IoMdChatbubbles size={30} />
+                <IoMdChatbubbles size={30} className="text-orange-600 dark:text-orange-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 Online Tutoring
@@ -155,15 +155,15 @@ const ServicesPage = () => {
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   HD video conferencing
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Interactive whiteboard
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Session recordings
                 </li>
               </ul>
@@ -175,7 +175,7 @@ const ServicesPage = () => {
             <div className="h-3 bg-pink-400"></div>
             <div className="p-8">
               <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-500 transition">
-                <LiaHandsHelpingSolid size={30} />
+                <LiaHandsHelpingSolid size={30} className="text-red-600 dark:text-red-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 Homework Help
@@ -186,15 +186,15 @@ const ServicesPage = () => {
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Step-by-step solutions
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Concept explanations
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Quick turnaround time
                 </li>
               </ul>
@@ -206,7 +206,7 @@ const ServicesPage = () => {
             <div className="h-3 bg-cyan-400"></div>
             <div className="p-8">
               <div className="w-16 h-16 bg-teal-100 dark:bg-teal-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-teal-500 transition">
-                <IoMdMenu size={30} />
+                <IoMdMenu size={30} className="text-teal-600 dark:text-teal-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 Subject-Specific Tutoring
@@ -217,15 +217,15 @@ const ServicesPage = () => {
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   50+ subjects covered
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Specialized experts
                 </li>
                 <li className="flex items-center">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   All academic levels
                 </li>
               </ul>
@@ -296,7 +296,7 @@ const ServicesPage = () => {
       </div>
 
       {/* Pricing Preview Section */}
-      <div className="bg-white dark:from-gray-800 dark:to-gray-900 py-20">
+      <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
@@ -317,15 +317,15 @@ const ServicesPage = () => {
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-600 dark:text-gray-400">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Pay as you go
                 </li>
-                <li className="flex items-center text-gray-600">
-                  <TiTick size={25} className="pr-2" />
+                <li className="flex items-center text-gray-600 dark:text-gray-400">
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   All subjects
                 </li>
-                <li className="flex items-center text-gray-600">
-                  <TiTick size={25} className="pr-2" />
+                <li className="flex items-center text-gray-600 dark:text-gray-400">
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Basic support
                 </li>
               </ul>
@@ -351,15 +351,15 @@ const ServicesPage = () => {
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-600 dark:text-gray-400">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Monthly packages
                 </li>
-                <li className="flex items-center text-gray-600">
-                  <TiTick size={25} className="pr-2" />
+                <li className="flex items-center text-gray-600 dark:text-gray-400">
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Priority support
                 </li>
-                <li className="flex items-center text-gray-600">
-                  <TiTick size={25} className="pr-2" />
+                <li className="flex items-center text-gray-600 dark:text-gray-400">
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Progress reports
                 </li>
               </ul>
@@ -381,15 +381,15 @@ const ServicesPage = () => {
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-600 dark:text-gray-400">
-                  <TiTick size={25} className="pr-2" />
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Bulk pricing
                 </li>
-                <li className="flex items-center text-gray-600">
-                  <TiTick size={25} className="pr-2" />
+                <li className="flex items-center text-gray-600 dark:text-gray-400">
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Dedicated account manager
                 </li>
-                <li className="flex items-center text-gray-600">
-                  <TiTick size={25} className="pr-2" />
+                <li className="flex items-center text-gray-600 dark:text-gray-400">
+                  <TiTick size={25} className="pr-2 text-blue-600 dark:text-blue-400" />
                   Custom integrations
                 </li>
               </ul>
@@ -405,7 +405,7 @@ const ServicesPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-pink-500 text-white py-20">
+      <div className="bg-pink-500 dark:bg-pink-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Excel?

@@ -195,14 +195,14 @@ const AddTutorPage = ({token}) => {
     };
 
     return (
-      <div className="min-h-screen bg-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="max-w-6xl mx-auto"
         >
-          <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
             <div className="grid lg:grid-cols-5">
               {/* Left Side - Form */}
               <div className="lg:col-span-3 p-6 md:p-8">
@@ -216,10 +216,10 @@ const AddTutorPage = ({token}) => {
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl mb-4 shadow-lg">
                     <GraduationCap className="w-8 h-8 text-white" />
                   </div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
                     Become a Tutor
                   </h1>
-                  <p className="text-gray-600 text-sm md:text-base">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
                     Share your knowledge and help students achieve success
                   </p>
                 </motion.div>
@@ -231,7 +231,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Tutor Name <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -244,14 +244,14 @@ const AddTutorPage = ({token}) => {
                         placeholder="Enter your full name"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                           errors.name
-                            ? "border-red-500 bg-red-50"
-                            : "border-gray-200 bg-gray-50"
-                        } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                            ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                            : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
                     {errors.name && (
                       <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <XCircle className="w-4 h-4 mr-1" />
+                        <XCircle className="w-4 h-4 mr-1 text-red-500" />
                         {errors.name}
                       </p>
                     )}
@@ -263,7 +263,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.35 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Profile Photo URL
                     </label>
                     <div className="relative">
@@ -274,7 +274,7 @@ const AddTutorPage = ({token}) => {
                         value={formData.profilePhoto}
                         onChange={handleChange}
                         placeholder="https://example.com/photo.jpg"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
                   </motion.div>
@@ -285,7 +285,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Subject / Category <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -302,26 +302,26 @@ const AddTutorPage = ({token}) => {
                         placeholder="Search or select a subject"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                           errors.subject
-                            ? "border-red-500 bg-red-50"
-                            : "border-gray-200 bg-gray-50"
-                        } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                            ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                            : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                       {showSubjectDropdown && (
-                        <div className="absolute z-20 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-48 overflow-y-auto">
+                        <div className="absolute z-20 w-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg max-h-48 overflow-y-auto">
                           {filteredSubjects.length > 0 ? (
                             filteredSubjects.map((subject) => (
                               <button
                                 key={subject}
                                 type="button"
                                 onClick={() => handleSubjectSelect(subject)}
-                                className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors flex items-center"
+                                className="w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors flex items-center"
                               >
-                                <BookOpen className="w-4 h-4 mr-3 text-gray-400" />
+                                <BookOpen className="w-4 h-4 mr-3 text-gray-400 dark:text-gray-500" />
                                 {subject}
                               </button>
                             ))
                           ) : (
-                            <div className="px-4 py-3 text-gray-500 text-center">
+                            <div className="px-4 py-3 text-gray-500 dark:text-gray-450 text-center">
                               No subjects found
                             </div>
                           )}
@@ -330,7 +330,7 @@ const AddTutorPage = ({token}) => {
                     </div>
                     {errors.subject && (
                       <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <XCircle className="w-4 h-4 mr-1" />
+                        <XCircle className="w-4 h-4 mr-1 text-red-500" />
                         {errors.subject}
                       </p>
                     )}
@@ -343,7 +343,7 @@ const AddTutorPage = ({token}) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.45 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Available Days <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -356,14 +356,14 @@ const AddTutorPage = ({token}) => {
                           placeholder="e.g., Sat, Sun, Mon"
                           className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                             errors.availableDays
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-200 bg-gray-50"
-                          } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                              ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                              : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                          } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                         />
                       </div>
                       {errors.availableDays && (
                         <p className="mt-1 text-sm text-red-600 flex items-center">
-                          <XCircle className="w-4 h-4 mr-1" />
+                          <XCircle className="w-4 h-4 mr-1 text-red-500" />
                           {errors.availableDays}
                         </p>
                       )}
@@ -374,7 +374,7 @@ const AddTutorPage = ({token}) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Available Time <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -387,14 +387,14 @@ const AddTutorPage = ({token}) => {
                           placeholder="e.g., 10 AM - 2 PM"
                           className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                             errors.availableTime
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-200 bg-gray-50"
-                          } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                              ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                              : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                          } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                         />
                       </div>
                       {errors.availableTime && (
                         <p className="mt-1 text-sm text-red-600 flex items-center">
-                          <XCircle className="w-4 h-4 mr-1" />
+                          <XCircle className="w-4 h-4 mr-1 text-red-500" />
                           {errors.availableTime}
                         </p>
                       )}
@@ -408,7 +408,7 @@ const AddTutorPage = ({token}) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.55 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Hourly Fee (BDT) <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -421,14 +421,14 @@ const AddTutorPage = ({token}) => {
                           placeholder="500"
                           className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                             errors.hourlyFee
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-200 bg-gray-50"
-                          } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                              ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                              : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                          } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                         />
                       </div>
                       {errors.hourlyFee && (
                         <p className="mt-1 text-sm text-red-600 flex items-center">
-                          <XCircle className="w-4 h-4 mr-1" />
+                          <XCircle className="w-4 h-4 mr-1 text-red-500" />
                           {errors.hourlyFee}
                         </p>
                       )}
@@ -439,7 +439,7 @@ const AddTutorPage = ({token}) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Total Slots <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -452,14 +452,14 @@ const AddTutorPage = ({token}) => {
                           placeholder="10"
                           className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                             errors.totalSlots
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-200 bg-gray-50"
-                          } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                              ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                              : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                          } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                         />
                       </div>
                       {errors.totalSlots && (
                         <p className="mt-1 text-sm text-red-600 flex items-center">
-                          <XCircle className="w-4 h-4 mr-1" />
+                          <XCircle className="w-4 h-4 mr-1 text-red-500" />
                           {errors.totalSlots}
                         </p>
                       )}
@@ -472,7 +472,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.65 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Session Start Date <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -484,14 +484,14 @@ const AddTutorPage = ({token}) => {
                         onChange={handleChange}
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                           errors.sessionStartDate
-                            ? "border-red-500 bg-red-50"
-                            : "border-gray-200 bg-gray-50"
-                        } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                            ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                            : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
                     {errors.sessionStartDate && (
                       <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <XCircle className="w-4 h-4 mr-1" />
+                        <XCircle className="w-4 h-4 mr-1 text-red-500" />
                         {errors.sessionStartDate}
                       </p>
                     )}
@@ -503,7 +503,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.7 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Institution <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -516,14 +516,14 @@ const AddTutorPage = ({token}) => {
                         placeholder="e.g., University of Dhaka"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                           errors.institution
-                            ? "border-red-500 bg-red-50"
-                            : "border-gray-200 bg-gray-50"
-                        } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                            ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                            : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
                     {errors.institution && (
                       <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <XCircle className="w-4 h-4 mr-1" />
+                        <XCircle className="w-4 h-4 mr-1 text-red-500" />
                         {errors.institution}
                       </p>
                     )}
@@ -534,7 +534,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.75 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Experience <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -547,20 +547,20 @@ const AddTutorPage = ({token}) => {
                         placeholder="Describe your teaching experience, qualifications, and expertise..."
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                           errors.experience
-                            ? "border-red-500 bg-red-50"
-                            : "border-gray-200 bg-gray-50"
-                        } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none`}
+                            ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                            : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none`}
                       />
                     </div>
                     <div className="flex justify-between items-center mt-1">
                       {errors.experience && (
                         <p className="text-sm text-red-600 flex items-center">
-                          <XCircle className="w-4 h-4 mr-1" />
+                          <XCircle className="w-4 h-4 mr-1 text-red-500" />
                           {errors.experience}
                         </p>
                       )}
                       <span
-                        className={`text-xs ml-auto ${formData.experience.length >= 50 ? "text-green-600" : "text-gray-400"}`}
+                        className={`text-xs ml-auto ${formData.experience.length >= 50 ? "text-green-600 dark:text-green-405" : "text-gray-400"}`}
                       >
                         {formData.experience.length}/500 characters
                       </span>
@@ -573,7 +573,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.8 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Location (Area/City){" "}
                       <span className="text-red-500">*</span>
                     </label>
@@ -587,14 +587,14 @@ const AddTutorPage = ({token}) => {
                         placeholder="e.g., Dhanmondi, Dhaka"
                         className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
                           errors.location
-                            ? "border-red-500 bg-red-50"
-                            : "border-gray-200 bg-gray-50"
-                        } text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                            ? "border-red-500 bg-red-50 dark:bg-red-950/20 dark:border-red-900/50"
+                            : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                        } text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                       />
                     </div>
                     {errors.location && (
                       <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <XCircle className="w-4 h-4 mr-1" />
+                        <XCircle className="w-4 h-4 mr-1 text-red-500" />
                         {errors.location}
                       </p>
                     )}
@@ -606,7 +606,7 @@ const AddTutorPage = ({token}) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.85 }}
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       Teaching Mode
                     </label>
                     <div className="grid grid-cols-3 gap-3">
@@ -619,8 +619,8 @@ const AddTutorPage = ({token}) => {
                           key={mode.value}
                           className={`relative cursor-pointer rounded-xl border-2 p-4 transition-all ${
                             formData.teachingMode === mode.value
-                              ? "border-blue-500 bg-blue-50"
-                              : "border-gray-200 bg-white hover:border-gray-300"
+                              ? "border-blue-500 bg-blue-50/50 dark:bg-blue-950/20"
+                              : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-650"
                           }`}
                         >
                           <input
@@ -632,8 +632,8 @@ const AddTutorPage = ({token}) => {
                             className="sr-only"
                           />
                           <div className="flex flex-col items-center text-center">
-                            <mode.icon className="w-6 h-6 mb-2 text-blue-600" />
-                            <span className="text-sm font-medium text-gray-900">
+                            <mode.icon className="w-6 h-6 mb-2 text-blue-600 dark:text-blue-400" />
+                            <span className="text-sm font-medium text-gray-900 dark:text-gray-250">
                               {mode.label}
                             </span>
                           </div>
@@ -687,7 +687,7 @@ const AddTutorPage = ({token}) => {
               </div>
 
               {/* Right Side - Live Preview */}
-              <div className="lg:col-span-2 bg-purple-900 to-slate-900 p-6 md:p-8">
+              <div className="lg:col-span-2 bg-gradient-to-b from-purple-900 to-slate-900 p-6 md:p-8">
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -707,8 +707,8 @@ const AddTutorPage = ({token}) => {
                           <Image
                             src={formData.profilePhoto}
                             alt="Profile"
-                            width={50}
-                            height={50}
+                            width={96}
+                            height={96}
                             className="w-full h-full rounded-full object-cover"
                             onError={() => setImageError(true)}
                           />

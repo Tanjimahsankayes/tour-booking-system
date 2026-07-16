@@ -207,24 +207,49 @@ const Navbar = () => {
               >
                 Tutors
               </Link>
-              <Link
-                href="/services"
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
-              >
-                Services
-              </Link>
-              <Link
-                href="/about"
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
-              >
-                Contact
-              </Link>
+              {user ? (
+                <>
+                  <Link
+                    href="/add-tutors"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
+                  >
+                    Add Tutors
+                  </Link>
+                  <Link
+                    href="/my-tutor"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
+                  >
+                    My Tutors
+                  </Link>
+                  <Link
+                    href="/my-booked-sessions"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
+                  >
+                    My Booked Sessions
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/services"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
+                  >
+                    Services
+                  </Link>
+                  <Link
+                    href="/about"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium"
+                  >
+                    Contact
+                  </Link>
+                </>
+              )}
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 {user ? (
                   <>

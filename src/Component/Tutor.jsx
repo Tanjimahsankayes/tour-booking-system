@@ -56,7 +56,7 @@ const TutorPage = ({ tutor }) => {
     <Link href={`/tutors/${_id}`} className="block">
       <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
 
-        <div className="bg-indigo-600 p-4 sm:p-5">
+        <div className="bg-indigo-600 dark:bg-indigo-700 p-4 sm:p-5">
           <div className="flex items-center gap-4">
 
             <div className="shrink-0">
@@ -115,7 +115,7 @@ const TutorPage = ({ tutor }) => {
             </span>
           </div>
 
-          <button className="w-full mt-4 bg-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 text-sm flex items-center justify-center">
+          <button className="w-full mt-4 bg-indigo-600 dark:bg-indigo-700 text-white font-semibold py-2.5 px-4 rounded-xl hover:bg-indigo-700 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 text-sm flex items-center justify-center">
             Book Session
           </button>
         </div>
