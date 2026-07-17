@@ -59,7 +59,7 @@ const SignInPage = () => {
         console.log(authClient);  
         await authClient.signIn.social({
           provider: "google",
-          callbackURL: "/",
+          // callbackURL: "/",
         });
       } catch (error) {
         toast.error("Google signup failed");
@@ -69,7 +69,6 @@ const SignInPage = () => {
   return (
     <div className="min-h-screen bg-indigo-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full flex bg-white rounded-3xl shadow-2xl overflow-hidden">
-        {/* Left Side - Image/Branding */}
         <div className="hidden lg:flex lg:w-1/2 bg-indigo-700 p-12 flex-col justify-center items-center text-white">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
