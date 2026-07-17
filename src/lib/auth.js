@@ -8,6 +8,7 @@ const db = client.db('tutor-user');
 
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
+  trustedOrigins: ["https://tutor-booking-system-three.vercel.app"],
   emailAndPassword: {
     enabled: true,
   },

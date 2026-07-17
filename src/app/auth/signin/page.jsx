@@ -59,7 +59,7 @@ const SignInPage = () => {
         console.log(authClient);  
         await authClient.signIn.social({
           provider: "google",
-          // callbackURL: "/",
+          callbackURL: "/",
         });
       } catch (error) {
         toast.error("Google signup failed");

@@ -92,6 +92,7 @@ const SignUp = () => {
     try {
       await authClient.signIn.social({
         provider: "google",
+        callbackURL: "/",
       });
     } catch (error) {
       console.error(error);
