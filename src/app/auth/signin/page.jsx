@@ -55,6 +55,8 @@ const SignInPage = () => {
 
   const handleGoogleSignUp = async () => {
       try {
+        console.log("Signup page loaded");
+        console.log(authClient);  
         await authClient.signIn.social({
           provider: "google",
           callbackURL: "/",
