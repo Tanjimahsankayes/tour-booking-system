@@ -14,7 +14,9 @@ export async function GET(request) {
     }
 
     // Fetch tutors for the logged-in user
-    const response = await fetch(`http://localhost:5000/tutor?email=${email}`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor?email=${email}`,
+    );
 
     if (!response.ok) {
       return NextResponse.json(

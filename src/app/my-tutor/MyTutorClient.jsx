@@ -40,7 +40,7 @@ const MyTutorClient = ({ user, initialTutors, token }) => {
     setIsDeleting(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/my-tutor/${selectedTutor._id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutor/${selectedTutor._id}`,
         {
           method: "DELETE",
           headers: {

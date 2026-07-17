@@ -141,14 +141,17 @@ const BookingModal = ({ isOpen, onClose, tutor, onBookingSuccess }) => {
     try {
       const { data: tokenData } = await authClient.token();
 
-      const response = await fetch("http://localhost:5000/booking", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${tokenData?.token}`,
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booking`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+          body: JSON.stringify(bookingData),
         },
-        body: JSON.stringify(bookingData),
-      });
+      );
 
       const data = await response.json();
       console.log(data);

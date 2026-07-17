@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const SignInPage = () => {
   const [formData, setFormData] = useState({

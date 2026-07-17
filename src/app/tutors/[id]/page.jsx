@@ -21,11 +21,11 @@ const TutorDetailsPage = async ({ params }) => {
   if (!user) {
     redirect("/auth/signin");
   }
-  const res = await fetch(`http://localhost:5000/tutor/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${id}`, {
     cache: "no-store",
     headers: {
-      authorization : `Bearer ${token}`
-    }
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {

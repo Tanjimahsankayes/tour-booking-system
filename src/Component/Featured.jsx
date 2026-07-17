@@ -4,7 +4,7 @@ import Link from "next/link";
 import TutorPage from "./Tutor";
 
 const Featured = async () => {
-  const res = await fetch("http://localhost:5000/featured", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/featured`, {
     cache: "no-store",
   });
   const tutorFeature = await res.json();

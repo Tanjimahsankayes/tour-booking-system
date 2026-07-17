@@ -20,7 +20,7 @@ export async function POST(request) {
 
     // Check tutor availability and session date
     const tutorResponse = await fetch(
-      `http://localhost:5000/tutor/${bookingData.tutorId}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${bookingData.tutorId}`,
     );
     
     if (!tutorResponse.ok) {
@@ -56,17 +56,20 @@ export async function POST(request) {
     }
 
     // Create booking
-    const bookingResponse = await fetch("http://localhost:5000/booking", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const bookingResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/booking`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...bookingData,
+          bookingStatus: "Pending",
+          createdAt: new Date().toISOString(),
+        }),
       },
-      body: JSON.stringify({
-        ...bookingData,
-        bookingStatus: "Pending",
-        createdAt: new Date().toISOString(),
-      }),
-    });
+    );
 
     if (!bookingResponse.ok) {
       const errorData = await bookingResponse.json();
@@ -82,7 +85,7 @@ export async function POST(request) {
     const updatedSlots = Math.max(0, (tutor.totalSlots || 0) - 1);
     
     const updateTutorResponse = await fetch(
-      `http://localhost:5000/tutor/${bookingData.tutorId}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${bookingData.tutorId}`,
       {
         method: "PATCH",
         headers: {
@@ -91,14 +94,17 @@ export async function POST(request) {
         body: JSON.stringify({
           totalSlots: updatedSlots,
         }),
-      }
+      },
     );
 
     if (!updateTutorResponse.ok) {
       // Rollback booking if tutor update fails
-      await fetch(`http://localhost:5000/booking/${booking._id}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${booking._id}`,
+        {
+          method: "DELETE",
+        },
+      );
       return NextResponse.json(
         { error: "Failed to update tutor slots" },
         { status: 500 }

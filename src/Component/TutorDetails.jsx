@@ -45,11 +45,14 @@ const TutorDetails = ({ tutor, user }) => {
   const refreshTutor = async () => {
     try {
       const { data: tokenData } = await authClient.token();
-      const res = await fetch(`http://localhost:5000/tutor/${_id}`, {
-        headers: {
-          authorization: `Bearer ${tokenData?.token}`
-        }
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${_id}`,
+        {
+          headers: {
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+        },
+      );
       if (res.ok) {
         const updatedTutor = await res.json();
         setCurrentTutor(updatedTutor);

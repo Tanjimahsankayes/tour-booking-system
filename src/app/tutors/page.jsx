@@ -23,12 +23,24 @@ const TutorsPage = async () => {
       headers: await headers(),
     });
 
-  const res = await fetch("http://localhost:5000/tutor", {
+    console.log("TOKEN:", token);
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  const tutors = await res.json();
+  console.log("STATUS:", res.status);
+
+  const text = await res.text();
+  console.log("BODY:", text);
+
+  if (!res.ok) {
+    throw new Error(text);
+  }
+
+  const tutors = JSON.parse(text);
+  // const tutors = await res.json();
 
   return <TutorsClient tutors={tutors} />;
 };

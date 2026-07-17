@@ -15,7 +15,7 @@ export async function GET(request) {
 
     // Fetch bookings for the logged-in user
     const response = await fetch(
-      `http://localhost:5000/booking?studentEmail=${encodeURIComponent(email)}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/booking?studentEmail=${encodeURIComponent(email)}`,
     );
 
     if (!response.ok) {

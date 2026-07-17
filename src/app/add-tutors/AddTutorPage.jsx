@@ -168,7 +168,7 @@ const AddTutorPage = ({token}) => {
       }
       setIsLoading(true);
       try {
-        const res = await fetch("http://localhost:5000/tutor", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

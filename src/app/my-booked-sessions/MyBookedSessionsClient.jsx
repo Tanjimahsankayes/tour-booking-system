@@ -30,7 +30,7 @@ const MyBookedSessionsClient = ({ bookings: initialBookings }) => {
       const { token } = await authClient.getToken();
 
       const response = await fetch(
-        `http://localhost:5000/booking/${selectedBooking._id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${selectedBooking._id}`,
         {
           method: "DELETE",
           headers: {

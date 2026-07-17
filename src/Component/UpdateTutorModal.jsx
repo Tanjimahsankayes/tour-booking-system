@@ -77,14 +77,17 @@ const UpdateTutorModal = ({ isOpen, onClose, tutor, onUpdate, token }) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`http://localhost:5000/my-tutor/${tutor._id}`, {
-        method: "PATCH",
-        headers: {
-          authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutor/${tutor._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedTutor),
         },
-        body: JSON.stringify(updatedTutor),
-      });
+      );
 
       const data = await response.json();
 

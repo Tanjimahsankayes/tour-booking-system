@@ -13,13 +13,16 @@ export async function PATCH(request, { params }) {
       );
     }
 
-    const response = await fetch(`http://localhost:5000/tutor/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateData),
       },
-      body: JSON.stringify(updateData),
-    });
+    );
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -48,9 +51,12 @@ export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
 
-    const response = await fetch(`http://localhost:5000/tutor/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${id}`,
+      {
+        method: "DELETE",
+      },
+    );
 
     if (!response.ok) {
       return NextResponse.json(
