@@ -34,7 +34,7 @@ const Navbar = () => {
             href="/"
             className="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition"
           >
-            Tutor Booking
+            TutorHive
           </Link>
 
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
