@@ -1,10 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaMap, FaTwitter } from "react-icons/fa";
-import { FaMessage } from "react-icons/fa6";
-import { IoCallOutline, IoLocationOutline } from "react-icons/io5";
-import { MdOutlineWatchLater } from "react-icons/md";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
+} from "react-icons/fa";
+import {
+  HiOutlineClock,
+  HiOutlineLocationMarker,
+  HiOutlineMail,
+  HiOutlinePaperAirplane,
+  HiOutlinePhone,
+  HiOutlineSparkles,
+} from "react-icons/hi";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -97,56 +107,64 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
-      {/* Hero Section */}
-      <div className="bg-indigo-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                <FaMessage size={30} />
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Get in Touch
-            </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Have questions about our tutoring services? We're here to help.
-              Reach out to us and we'll respond as soon as possible.
-            </p>
-          </div>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+      {/* Hero Section with Glassmorphism Accent */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-indigo-800 to-violet-900 text-white py-24 px-4">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div className="container mx-auto relative z-10 text-center max-w-3xl">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/10 text-indigo-200 backdrop-blur-md border border-white/10 mb-6">
+            <HiOutlineSparkles className="w-4 h-4" /> We're Here to Help
+          </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+            Let's Start a Conversation
+          </h1>
+          <p className="text-lg sm:text-xl text-indigo-100 font-light leading-relaxed">
+            Have questions about finding the perfect tutor or getting started
+            with TutorHive? Drop us a message and our team will get back to you
+            shortly.
+          </p>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-10">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-                Send us a Message
+      {/* Main Layout Container */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-12 pb-20 relative z-20">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Contact Form */}
+          <div className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100 dark:border-slate-800/80">
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                Send us a message
               </h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                Fill out the form below and we’ll respond within 24 hours.
+              </p>
+            </div>
 
-              {submitSuccess && (
-                <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
-                  <div className="flex items-center">
-                    <FaMessage />
-                    <p className="text-green-800 dark:text-green-400 font-medium">
-                      Message sent successfully! We'll get back to you soon.
-                    </p>
-                  </div>
+            {submitSuccess && (
+              <div className="mb-6 p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 flex items-center gap-3">
+                <div className="p-2 bg-emerald-500 text-white rounded-xl">
+                  <HiOutlinePaperAirplane className="w-5 h-5" />
                 </div>
-              )}
+                <div>
+                  <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">
+                    Message Sent Successfully!
+                  </p>
+                  <p className="text-xs text-emerald-600 dark:text-emerald-400">
+                    Thank you for reaching out. We will get back to you soon.
+                  </p>
+                </div>
+              </div>
+            )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Full Name */}
                 <div>
                   <label
                     htmlFor="fullName"
-                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2"
                   >
-                    Full Name <span className="text-red-500">*</span>
+                    Full Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -154,25 +172,27 @@ const Contact = () => {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${
-                      errors.fullName ? "border-red-500" : "border-gray-300 dark:border-gray-600"
+                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 ${
+                      errors.fullName
+                        ? "border-rose-500"
+                        : "border-slate-200 dark:border-slate-700/80 focus:border-transparent"
                     }`}
                     placeholder="John Doe"
                   />
                   {errors.fullName && (
-                    <p className="mt-1 text-sm text-red-600">
+                    <p className="mt-1.5 text-xs text-rose-500 font-medium">
                       {errors.fullName}
                     </p>
                   )}
                 </div>
 
-                {/* Email */}
+                {/* Email Address */}
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2"
                   >
-                    Email Address <span className="text-red-500">*</span>
+                    Email Address <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -180,23 +200,29 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${
-                      errors.email ? "border-red-500" : "border-gray-300 dark:border-gray-600"
+                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 ${
+                      errors.email
+                        ? "border-rose-500"
+                        : "border-slate-200 dark:border-slate-700/80 focus:border-transparent"
                     }`}
                     placeholder="john@example.com"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                    <p className="mt-1.5 text-xs text-rose-500 font-medium">
+                      {errors.email}
+                    </p>
                   )}
                 </div>
+              </div>
 
-                {/* Phone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Phone Number */}
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2"
                   >
-                    Phone Number <span className="text-red-500">*</span>
+                    Phone Number <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -204,13 +230,17 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${
-                      errors.phone ? "border-red-500" : "border-gray-300 dark:border-gray-600"
+                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 ${
+                      errors.phone
+                        ? "border-rose-500"
+                        : "border-slate-200 dark:border-slate-700/80 focus:border-transparent"
                     }`}
                     placeholder="+1 (555) 123-4567"
                   />
                   {errors.phone && (
-                    <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+                    <p className="mt-1.5 text-xs text-rose-500 font-medium">
+                      {errors.phone}
+                    </p>
                   )}
                 </div>
 
@@ -218,17 +248,19 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2"
                   >
-                    Subject <span className="text-red-500">*</span>
+                    Subject <span className="text-rose-500">*</span>
                   </label>
                   <select
                     id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${
-                      errors.subject ? "border-red-500" : "border-gray-300 dark:border-gray-600"
+                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 ${
+                      errors.subject
+                        ? "border-rose-500"
+                        : "border-slate-200 dark:border-slate-700/80 focus:border-transparent"
                     }`}
                   >
                     <option value="">Select a subject</option>
@@ -240,207 +272,195 @@ const Contact = () => {
                     <option value="other">Other</option>
                   </select>
                   {errors.subject && (
-                    <p className="mt-1 text-sm text-red-600">
+                    <p className="mt-1.5 text-xs text-rose-500 font-medium">
                       {errors.subject}
                     </p>
                   )}
                 </div>
+              </div>
 
-                {/* Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
-                  >
-                    Message <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${
-                      errors.message ? "border-red-500" : "border-gray-300 dark:border-gray-600"
-                    }`}
-                    placeholder="How can we help you?"
-                  />
-                  {errors.message && (
-                    <p className="mt-1 text-sm text-red-600">
-                      {errors.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-indigo-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
+              {/* Message Input */}
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2"
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center justify-center">
-                      <svg
-                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                      </svg>
-                      Sending...
-                    </span>
-                  ) : (
-                    "Send Message"
-                  )}
-                </button>
-              </form>
-            </div>
+                  Your Message <span className="text-rose-500">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={5}
+                  className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 resize-none ${
+                    errors.message
+                      ? "border-rose-500"
+                      : "border-slate-200 dark:border-slate-700/80 focus:border-transparent"
+                  }`}
+                  placeholder="Tell us how we can help..."
+                />
+                {errors.message && (
+                  <p className="mt-1.5 text-xs text-rose-500 font-medium">
+                    {errors.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold rounded-xl transition duration-200 shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    <span>Sending Message...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <HiOutlinePaperAirplane className="w-4 h-4 rotate-45" />
+                  </>
+                )}
+              </button>
+            </form>
           </div>
 
-          {/* Contact Information */}
-          <div className="space-y-6">
-            {/* Contact Info Card */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+          {/* Right Column: Cards Sidebar */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Info Cards Container */}
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 dark:border-slate-800/80">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
                 Contact Information
               </h3>
 
               <div className="space-y-6">
-                {/* Email */}
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center shrink-0">
-                    <FaMessage size={20} />
+                {/* Email Item */}
+                <div className="flex items-start gap-4 group">
+                  <div className="p-3.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl group-hover:bg-indigo-600 group-hover:text-white transition duration-300">
+                    <HiOutlineMail className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">Email</h4>
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                      Email Us
+                    </h4>
                     <a
                       href="mailto:info@tutorbooking.com"
-                      className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition"
+                      className="text-slate-700 dark:text-slate-200 font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition"
                     >
                       info@tutorbooking.com
                     </a>
                   </div>
                 </div>
 
-                {/* Phone */}
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center shrink-0">
-                    <IoCallOutline size={20} />
+                {/* Phone Item */}
+                <div className="flex items-start gap-4 group">
+                  <div className="p-3.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl group-hover:bg-indigo-600 group-hover:text-white transition duration-300">
+                    <HiOutlinePhone className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">Phone</h4>
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                      Call Us
+                    </h4>
                     <a
                       href="tel:+15551234567"
-                      className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition"
+                      className="text-slate-700 dark:text-slate-200 font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition"
                     >
                       +1 (555) 123-4567
                     </a>
                   </div>
                 </div>
 
-                {/* Address */}
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center shrink-0">
-                    <IoLocationOutline size={20} />
+                {/* Office Location Item */}
+                <div className="flex items-start gap-4 group">
+                  <div className="p-3.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl group-hover:bg-indigo-600 group-hover:text-white transition duration-300">
+                    <HiOutlineLocationMarker className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                       Office Address
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      123 Education Street
-                      <br />
-                      Suite 456
+                    <p className="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
+                      123 Education Street, Suite 456
                       <br />
                       New York, NY 10001
                     </p>
                   </div>
                 </div>
 
-                {/* Working Hours */}
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center shrink-0">
-                    <MdOutlineWatchLater size={20} />
+                {/* Working Hours Item */}
+                <div className="flex items-start gap-4 group">
+                  <div className="p-3.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl group-hover:bg-indigo-600 group-hover:text-white transition duration-300">
+                    <HiOutlineClock className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                       Working Hours
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      Monday - Friday: 9:00 AM - 6:00 PM
+                    <p className="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
+                      Mon - Fri: 9:00 AM - 6:00 PM
                       <br />
                       Saturday: 10:00 AM - 4:00 PM
-                      <br />
-                      Sunday: Closed
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Social Media */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-                Follow Us
-              </h3>
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition transform hover:scale-110"
-                  aria-label="Facebook"
-                >
-                  <FaFacebook size={25} />
-                </a>
-                <a
-                  href="#"
-                  className="w-12 h-12 bg-sky-500 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition transform hover:scale-110"
-                  aria-label="Twitter"
-                >
-                  <FaTwitter size={25} />
-                </a>
-                <a
-                  href="#"
-                  className="w-12 h-12 bg-pink-600 rounded-lg flex items-center justify-center text-white hover:bg-pink-700 transition transform hover:scale-110"
-                  aria-label="Instagram"
-                >
-                  <FaInstagram size={25} />
-                </a>
-                <a
-                  href="#"
-                  className="w-12 h-12 bg-blue-700 rounded-lg flex items-center justify-center text-white hover:bg-blue-800 transition transform hover:scale-110"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin size={25} />
-                </a>
+              {/* Social Media Links */}
+              <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">
+                  Connect With Us
+                </h4>
+                <div className="flex gap-3">
+                  {[
+                    { icon: FaFacebookF, href: "#", label: "Facebook" },
+                    { icon: FaTwitter, href: "#", label: "Twitter" },
+                    { icon: FaInstagram, href: "#", label: "Instagram" },
+                    { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
+                  ].map((social, idx) => (
+                    <a
+                      key={idx}
+                      href={social.href}
+                      aria-label={social.label}
+                      className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white transition duration-200"
+                    >
+                      <social.icon className="w-4 h-4" />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Google Maps Placeholder */}
-        <div className="mt-12">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-            <div className="h-80 bg-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 flex items-center justify-center">
-              <div className="text-center flex flex-col justify-center items-center p-4">
-                <FaMap size={35} />
-                <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Find Us on the Map
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Google Maps integration coming soon
+            {/* Google Map Mock Card */}
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-2 shadow-xl border border-slate-100 dark:border-slate-800/80">
+              <div className="h-48 w-full bg-slate-100 dark:bg-slate-800 rounded-2xl flex flex-col items-center justify-center text-center p-4 border border-dashed border-slate-300 dark:border-slate-700">
+                <HiOutlineLocationMarker className="w-8 h-8 text-indigo-500 mb-2 animate-bounce" />
+                <h4 className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
+                  Interactive Map Integration
+                </h4>
+                <p className="text-xs text-slate-400 mt-1">
+                  Google Maps will load here seamlessly
                 </p>
               </div>
             </div>

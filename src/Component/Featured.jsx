@@ -1,5 +1,5 @@
 import React from "react";
-import { GraduationCap, ArrowRight, Star } from "lucide-react";
+import { GraduationCap, ArrowRight, Sparkles, Award } from "lucide-react";
 import Link from "next/link";
 import TutorPage from "./Tutor";
 
@@ -10,57 +10,83 @@ const Featured = async () => {
   const tutorFeature = await res.json();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl mb-4 shadow-lg">
-            <Star className="w-8 h-8 text-white" />
+    <section className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300 overflow-hidden">
+      {/* Background Decorative Gradient Blurs */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-indigo-500/10 via-violet-500/10 to-transparent blur-3xl pointer-events-none rounded-full" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header Section */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/50 mb-6 shadow-sm">
+            <Sparkles className="w-4 h-4 text-indigo-500 animate-pulse" /> Top
+            Educators
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-            Featured Tutors
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+            Featured{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
+              Tutors
+            </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
-            Meet our top-rated tutors who have consistently delivered exceptional results for students
+
+          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg font-light leading-relaxed">
+            Meet our top-rated tutors who have consistently delivered
+            exceptional learning experiences and proven academic success for
+            students.
           </p>
         </div>
 
         {/* Tutors Grid */}
         {tutorFeature && tutorFeature.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {tutorFeature.map((tutor) => (
               <div
                 key={tutor._id}
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                className="group relative bg-white dark:bg-slate-900 rounded-3xl p-1 border border-slate-200/80 dark:border-slate-800/80 shadow-lg hover:shadow-2xl hover:border-indigo-500/50 dark:hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1.5 overflow-hidden"
               >
-                <TutorPage tutor={tutor} />
+                {/* Subtle top border glow on card hover */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Featured Badge */}
+                <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 bg-amber-500/10 dark:bg-amber-400/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md">
+                  <Award className="w-3.5 h-3.5" />
+                  Featured
+                </div>
+
+                <div className="p-2">
+                  <TutorPage tutor={tutor} />
+                </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl p-12 text-center mb-12">
-            <GraduationCap className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          /* Empty State */
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center max-w-xl mx-auto mb-16 border border-slate-200/80 dark:border-slate-800/80 shadow-xl">
+            <div className="w-20 h-20 bg-indigo-50 dark:bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-5 text-indigo-500 dark:text-indigo-400">
+              <GraduationCap className="w-10 h-10" />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
               No Featured Tutors Yet
             </h3>
-            <p className="text-gray-500 dark:text-gray-400">
-              Check back later for our featured tutors
+            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mx-auto">
+              We are updating our list of top educators. Please check back again
+              shortly.
             </p>
           </div>
         )}
 
-        {/* View All Tutors Button */}
+        {/* View All Tutors CTA */}
         <div className="text-center">
           <Link
             href="/tutors"
-            className="inline-flex items-center px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold text-base rounded-2xl transition duration-200 shadow-xl shadow-indigo-500/25 hover:shadow-indigo-500/40 transform hover:-translate-y-0.5"
           >
-            View All Tutors
-            <ArrowRight className="w-5 h-5 ml-2" />
+            <span>View All Tutors</span>
+            <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
